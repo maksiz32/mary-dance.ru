@@ -10,6 +10,10 @@ class MainController extends Controller
         return view("main");
     }
     
+    public function old() {
+        return view("welcome");
+    }
+    
     public function news() {
         return view("news");        
     }
@@ -22,3 +26,4 @@ class MainController extends Controller
         return view("dogs");
     }
 }
+
