@@ -1,58 +1,22 @@
-@component('mail::message')
-{{-- Greeting --}}
-@if (! empty($greeting))
-# {{ $greeting }}
-@else
-@if ($level == 'error')
-# Whoops!
-@else
-# Hello!
-@endif
-@endif
-
-{{-- Intro Lines --}}
-@foreach ($introLines as $line)
-{{ $line }}
-
-@endforeach
-
-{{-- Action Button --}}
-@isset($actionText)
-<?php
-    switch ($level) {
-        case 'success':
-            $color = 'green';
-            break;
-        case 'error':
-            $color = 'red';
-            break;
-        default:
-            $color = 'blue';
-    }
-?>
-@component('mail::button', ['url' => $actionUrl, 'color' => $color])
-{{ $actionText }}
-@endcomponent
-@endisset
-
-{{-- Outro Lines --}}
-@foreach ($outroLines as $line)
-{{ $line }}
-
-@endforeach
-
-{{-- Salutation --}}
-@if (! empty($salutation))
-{{ $salutation }}
-@else
-Regards,<br>{{ config('app.name') }}
-@endif
-
-{{-- Subcopy --}}
-@isset($actionText)
-@component('mail::subcopy')
-If you’re having trouble clicking the "{{ $actionText }}" button, copy and paste the URL below
-into your web browser: [{{ $actionUrl }}]({{ $actionUrl }})
-@endcomponent
-@endisset
-@endcomponent
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+    <h1><a href="{{ url('/') }}">Сайт about chinees dogs</a></h1>
+    <h2>@if (! empty($greeting)) {{ $greeting }} @endif</h2>
+    @foreach ($introLines as $line)
+      <p>{{ $line }}</p>
+    @endforeach
+    @if (isset($actionText))
+      <p style="font-size: larger;">
+        <a href="{{ $actionUrl }}" target="_blank">{{ $actionText }}</a>
+      </p>
+    @endif
+    @foreach ($outroLines as $line)
+      <p>{{ $line }}</p>
+    @endforeach
+    <p>С уважением,<br>администрация сайта.</p>
+  </body>
+</html>

@@ -18,8 +18,8 @@ class MainController extends Controller
         return view("news");        
     }
     
-    public function care() {
-        return view("care");
+    public function dogs1() {
+        return view("dogs1");
     }
     
     public function dogs() {

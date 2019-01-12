@@ -1,4 +1,4 @@
-@extends("layouts.pc")
+@extends("layouts.app")
 
 @section("title", "Вход")
 @section("main")
