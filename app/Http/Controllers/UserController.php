@@ -5,18 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Http\Requests\UserRequest;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UserController extends Controller {
   public function __construct() {
-    parent::__construct();
-    $this->middleware("can:manipulate,App\User");
+    //parent::__construct();
+    //$this->middleware("can:manipulate,App\User");
   }
   
   public function index() {
     $users = User::select("id", "email", "name", "role")->orderBy("email")->get();
     return view("users.index", ["users" => $users]);
   }
-/*
+
   public function input(User $user) {
     return view("users.input", ["user" => $user]);
   }
@@ -34,6 +35,4 @@ class UserController extends Controller {
     return redirect()->action("UserController@index")
     ->with("status", "Пользователь " . $name . " удалён");
   }
- * 
- */
 }

@@ -1,9 +1,5 @@
 @extends("layouts.app")
 
-@push("head")
-  <script src="/js/pc.js"></script>
-@endpush
-
 @section("title", "Пользователи")
 @section("main")
   <h1>Список пользователей</h1>

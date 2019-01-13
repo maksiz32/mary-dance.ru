@@ -2,20 +2,14 @@
 
 namespace App\Policies;
 
+use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class UserPolicy
-{
-    use HandlesAuthorization;
-
-    /**
-     * Create a new policy instance.
-     *
-     * @return void
-     */
-    public function manipulate(User $user)
-    {
-        return $user->role == "m";
-    }
+class UserPolicy {
+  use HandlesAuthorization;
+  
+  public function manipulate(User $user) {
+    return $user->role == "m";
+  }
 }

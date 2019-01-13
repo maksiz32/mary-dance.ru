@@ -37,7 +37,7 @@
       <a class="nav-item nav-link <?php if ($p == 'dogs') { echo 'active'; } ?>" href="/dogs">Собаки</a>
       <a class="nav-item nav-link <?php if ($p == 'news') { echo 'active'; } ?>" href="/news">Новости</a>
       @if (auth()->check())
-      <a class="nav-item nav-link" href="/loguot">Выход</a>
+      <a class="nav-item nav-link" href="/logout">Выход</a>
       @else
       <a class="nav-item nav-link" href="/login"><span class="oi oi-account-login" title="Вход" aria-hidden="true"></span></a>
       @endif

@@ -2,42 +2,21 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
-class LoginController extends Controller
-{
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
+class LoginController extends Controller {
+  use AuthenticatesUsers;
 
-    use AuthenticatesUsers;
+  protected $redirectTo = '/';
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
-    }
+  public function __construct() {
+    $this->middleware('guest', ['except' => 'logout']);
+  }
     
-    protected function validateLogin(Request $request) {
+   protected function validateLogin(Request $request) {
     $this->validate($request, [
       $this->username() => 'required', 'password' => 'required',
     ], [
@@ -50,8 +29,7 @@ class LoginController extends Controller
     return redirect()->back()
     ->withInput($request->only($this->username(), 'remember'))
     ->withErrors([
-      $this->username() => 'Пользователь с таким адресом электронной почты ' .
-      'отсутствует в списке',
+      $this->username() => 'Не верные имя пользователя или пароль',
     ]);
   }
 }

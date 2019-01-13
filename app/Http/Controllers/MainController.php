@@ -9,11 +9,7 @@ class MainController extends Controller
     public function index() {
         return view("main");
     }
-    
-    public function old() {
-        return view("welcome");
-    }
-    
+        
     public function news() {
         return view("news");        
     }
