@@ -1,8 +1,30 @@
+body {
+    background-color: #ececf6;
+}
+
 .top60 {
     margin-top: 60px;
 }
 
-.mh-10 {
-    height: 9rem !important;
-    background-origin: border-box;
+.mh-8 {
+    height: 8rem !important;
+    width: 100%;
+    background-color: #e7e7e7 !important;
+}
+
+.mh-2 {
+    height: 2rem !important;
+    width: 100%;
+    background-color: #3097D1 !important;
+    color: whitesmoke;
+}
+
+.card {
+    margin-bottom: 10px;
+}
+
+.card:hover {
+    border-color: #007bff !important;
+    color: #007bff !important;
+    background-color: #ffc;
 }

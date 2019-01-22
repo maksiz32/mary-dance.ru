@@ -1,0 +1,3 @@
+Не работал GroupBy
+
+Файл /config/database.php, строка 53: 'strict' => true, (в "разделе" 'mysql'), значение поменять на false.

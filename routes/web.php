@@ -15,8 +15,10 @@ Route::get('/', 'MainController@index');
 Route::get('/policy', 'MainController@policy');
 Route::get('/about', 'MainController@about');
 Route::get('/bbcodes', 'MainController@bbcodes');
-Route::get('/news', 'DogController@news');
+
+Route::get('/news', 'NewsController@index');
 Route::get('/dogs1', 'DogController@index');
+Route::get('/dogs', 'DogController@dogs');
 
 Auth::routes();
 Route::get("logout", "Auth\LoginController@logout");
@@ -26,16 +28,17 @@ Route::get("/users/{user}/edit", "UserController@input");
 Route::put("/users", "UserController@save");
 Route::get("/users/{user}/delete", "UserController@destroy");
 
-Route::get("/view/{category}", "CategoryController@view");
-Route::get("/view/{category}/{subcategory}", "ArticleController@index");
+Route::get("/dog", "DogController@index");
+Route::get("/dog/create", "DogController@input")
+->name("dog.create");
+Route::post("/dog", "DogController@save");
+Route::get("/dog/{dogy}/edit", "DogController@input");
+Route::put("/dog", "DogController@save");
+Route::get("/dog/{id_dogs}", "DogController@view");
+Route::get("/dog/{id_dogs}/{firstPhoto}", "DogController@view");
 
-Route::get("/categories", "CategoryController@index");
-Route::get("/categories/create", "CategoryController@input")
-->name("categories.create");
-Route::post("/categories", "CategoryController@save");
-Route::get("/categories/{category}/edit", "CategoryController@input");
-Route::put("/categories", "CategoryController@save");
-Route::get("/categories/{category}/delete", "CategoryController@destroy");
+Route::get("/news/create", "NewsController@input")
+->name("news.create");
 
 Route::get("/subcategories", "SubcategoryController@index");
 Route::get("/subcategories/create", "SubcategoryController@input")
@@ -45,6 +48,7 @@ Route::get("/subcategories/{subcategory}/edit", "SubcategoryController@input");
 Route::put("/subcategories", "SubcategoryController@save");
 Route::get("/subcategories/{subcategory}/delete", "SubcategoryController@destroy");
 
+Route::get("/view/{category}/{subcategory}", "ArticleController@index");
 Route::get("/view/{category}/{subcategory}/{article}", "ArticleController@view");
 Route::get("/search", "ArticleController@search");
 
@@ -72,3 +76,9 @@ Route::get("/files/{file}/delete", "FileController@destroy");
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+/*
+DB::listen(function($query) {
+    dd($query->sql, $query->bindings);
+});
+ * 
+ */

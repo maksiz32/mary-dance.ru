@@ -3,15 +3,7 @@
 @section("title", "Собаки")
 @section("main")
 <?php
-function format_interval(DateInterval $interval) {
-	/*
-	можно без использования функции:
-	в самой форме:
-	$date1 = new DateTime();
-	$date2 = new DateTime($row['date_age']);
-	$interval = $date1->diff($date2);
-	echo $interval->format('%y г. %m мес.');
-	*/	
+function format_interval(DateInterval $interval) {	
     $result = "0 мес.";
     if ($interval->y) {
 		$result = $interval->format("%y г. ");
@@ -30,76 +22,53 @@ function format_interval(DateInterval $interval) {
 <!-- Yandex.Metrika counter -->
 
 <!-- /Yandex.Metrika counter -->
+<h1>Наши собаки</h1>
+<p>
+@if (auth()->check())
+      <a href="{{ route('dog.create', ['page' => '1']) }}" class="btn">Добавить собаку</a>
+@endif
+</p>
+<div class="container">
 <div class="row">
     @foreach ($dogs as $dog)
-    <div class="col-2">
+       <a href="/dog/{{$dog->id_dogs}}">
+    <div class="col-3">
     <div class="card">
-        @foreach($photos as $photo)
-              @if($photo->id_dogs == $dog->id_dogs)
-                <img class="card-img-top mh-10" src="./img/{{$photo->photo}}" alt="Photo {{ $dog->name }}">
-                @break
+        @if($dog->photo)
+                <div class="card-img-top mh-8" style="background: url('img/{{$dog->photo}}') no-repeat 50% 50%; background-size: contain;">
+                </div>
               @else
-                <img class="card-img-top mh-10" src="./img/nophoto.jpg" alt="No-photo">
-                @break
+                <div class="card-img-top mh-8" style="background: url('./img/nophoto.jpg') no-repeat 50% 50%; background-size: cover;">
+                </div>
               @endif
-        @endforeach
         <div class="card-body">
-            <h5 class="card-title">{{ $dog->name }}</h5>
-            <p class="card-text">{{ $dog->sex }}</p>
+            <h5 class="card-title"><b>Имя:</b> {{ $dog->name }}</h5>
+            <p class="card-text"><b>Пол:</b> {{ $dog->sex }}</p>
             <p class="card-text">{{ $dog->family }}</p>
+            </a>
             @if ($dog->dbres)
+            <p class="card-text"><b>Ссылка на родословную:</b> <small class="text-muted">{{ $dog->dbres }}</small></p>
+            <?php /*
             <div class="text-center">
                   <a href="{{ $dog->dbres }}" class="btn btn-primary">Посмотреть</a>
             </div>
+             * 
+             */?>
             @endif
         </div>
-        <div class="card-footer">
-        <small class="text-muted">
-          {{ $dog->date_age }}
-        </small>
+<a href="/dog/{{$dog->id_dogs}}">
+        <div class="card-footer">Возраст: 
+        <small class="text-muted"><?php
+        $date1 = new DateTime("now");
+		$date3 = new DateTime($dog->date_age);
+		$interval2 = $date1->diff($date3);
+		$nowT2 = format_interval($interval2);?>
+        <?=$nowT2;?></small>
       </div>
     </div>
     </div>
+</a>
     @endforeach
 </div>
-
-    <!--
-  <h1>Список пользователей</h1>
-  <table class="list">
-    <tr>
-      <th>Имя</th>
-      <th>Пол</th>
-      <th>Возраст</th>
-      <th>Помет</th>
-      <th>Фотография</th>
-      <th>БД</th>
-    <tr>
-    @foreach ($dogs as $dog)
-      <tr>
-        <td>{{ $dog->name }}</td>
-        <td>{{ $dog->sex }}</td>
-        <td>{{ $dog->date_age }}</td>
-        <td>{{ $dog->family }}</td>
-        <td>
-           @foreach($photos as $photo)
-              @if($photo->id_dogs == $dog->id_dogs)
-                {{$photo->photo}}
-              @endif
-            @endforeach
-        </td>
-        @if ($dog->dbres)
-        <td class="links">
-          <a href="{{ $dog->dbres }}">Посмотреть</a>
-        </td>
-        @else
-        <td>
-          Ссылка пока недоступна
-        </td>
-        @endif
-      </tr>
-    @endforeach
-  </table>
-    -->
-    
-    
+</div>
 @endsection
