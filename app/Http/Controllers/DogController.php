@@ -20,37 +20,18 @@ class DogController extends Controller
         $dogs = DB::table('our_dogs')->select('dogs_photos.photo', 'our_dogs.*')
                 ->leftJoin('dogs_photos', 'dogs_photos.id_dogs', 'our_dogs.id_dogs')
                 ->where('our_dogs.little', '=', '1')->orderBy('name')
-                ->groupBy('name')->distinct('name')->get();
+                ->groupBy('name')->distinct('name')->paginate(8);
         
        return view("dogs1", ["dogs" => $dogs]);
-        /*
-        $dogs = Our_dog::select("dogs_photos.*", "our_dogs.*")
-    ->join("dogs_photos", "dogs_photos.id_dogs", "our_dogs.id_dogs")
-    ->orderBy("our_dogs.name")->get();
-    return view("dogs1", ["dogs1" => $dogs]);
-         * 
-         */
-        /*
-        $dogs = DB::table("our_dogs")->where("little", "=", "1")->orderBy("date_age", "desc")->get();            
-        $photos = DB::table("dogs_photos")->get();            
-        return view("dogs1", ["dogs1" => $dogs, "photos" => $photos]);
-         * 
-         */
     }
     
     public function dogs() {
         $dogs = DB::table('our_dogs')->select('dogs_photos.photo', 'our_dogs.*')
                 ->leftJoin('dogs_photos', 'dogs_photos.id_dogs', 'our_dogs.id_dogs')
                 ->where('our_dogs.little', '=', '0')->orderBy('date_age', 'desc')
-                ->groupBy('name')->distinct('name')->get();
+                ->groupBy('name')->distinct('name')->paginate(8);
         return view("dogs", ["dogs" => $dogs]);
         
-        /*
-        $dogs = DB::table("our_dogs")->where("little", "=", "0")->get();
-        $photos = DB::table("dogs_photos")->get();
-        return view("dogs", ["dogs" => $dogs, "photos" => $photos]);
-         * 
-         */
     }
     
     public function input(Our_dog $dogy, $page = null) {

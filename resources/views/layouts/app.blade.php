@@ -25,7 +25,7 @@
 <body>
         <header>
             <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/">MaryDance</a>
+                <a class="navbar-brand" href="/"><div class="for2"><strong>MaryDance</strong></div></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -34,9 +34,10 @@
         <?php $p = request()->path(); ?>
         <a class="nav-item nav-link <?php if ($p == '/') { echo 'active'; } ?>" href="/">Главная</a>
       <a class="nav-item nav-link <?php if ($p == 'dogs1') { echo 'active'; } ?>" href="/dogs1">Щенки</a>
-      <a class="nav-item nav-link <?php if ($p == 'dogs') { echo 'active'; } ?>" href="/dogs">Собаки</a>
+      <a class="nav-item nav-link <?php if ($p == 'dogs') { echo 'active'; } ?>" href="/dogs">Наши собаки</a>
       <a class="nav-item nav-link <?php if ($p == 'news') { echo 'active'; } ?>" href="/news">Новости</a>
       @if (auth()->check())
+      <a class="nav-item nav-link <?php if ($p == 'admmary') { echo 'active'; } ?>" href="/admmary">Admin</a>
       <a class="nav-item nav-link" href="/logout">Выход</a>
       @else
       <a class="nav-item nav-link" href="/login"><span class="oi oi-account-login" title="Вход" aria-hidden="true"></span></a>

@@ -17,6 +17,7 @@ class UserController extends Controller {
     $users = User::select("id", "email", "name", "role")->orderBy("email")->get();
     return view("users.index", ["users" => $users]);
   }
+   
 
   public function input(User $user) {
     return view("users.input", ["user" => $user]);
@@ -28,11 +29,13 @@ class UserController extends Controller {
     return redirect()->action("UserController@index")
     ->with("status", "Пользователь " . $user->name . " исправлен");
   }
-
+/*
   public function destroy(User $user) {
     $name = $user->name;
     $user->delete();
     return redirect()->action("UserController@index")
     ->with("status", "Пользователь " . $name . " удалён");
   }
+ * 
+ */
 }

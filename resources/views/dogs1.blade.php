@@ -34,15 +34,15 @@ function format_interval(DateInterval $interval) {
   <h1>Наши щенки</h1>
   <p>
 @if (auth()->check())
-      <a href="{{ route('dog.create', ['page' => '2']) }}" class="btn">Добавить собаку</a></p>
+      <a href="{{ route('dog.create', ['page' => '2']) }}" class="btn btn-outline-info">Добавить собаку</a></p>
 @endif
 
 <div class="container">
     <div class="row">
   @foreach ($dogs as $dog)
-       <a href="/dog/{{$dog->id_dogs}}">
     <div class="col-3">
     <div class="card">
+       <a href="/dog/{{$dog->id_dogs}}">
         @if($dog->photo)
                 <div class="card-img-top mh-8" style="background: url('img/{{$dog->photo}}') no-repeat 50% 50%; background-size: contain;">
                 </div>
@@ -54,14 +54,10 @@ function format_interval(DateInterval $interval) {
             <h5 class="card-title">{{ $dog->name }}</h5>
             <p class="card-text">{{ $dog->sex }}</p>
             <p class="card-text">{{ $dog->family }}</p>
-            </a>
             @if ($dog->dbres)
-            <div class="text-center">
-                  <a href="{{ $dog->dbres }}" class="btn btn-primary">Посмотреть</a>
-            </div>
+            <p class="card-text"><b>Ссылка на родословную:</b> <small class="text-muted">{{ $dog->dbres }}</small></p>
             @endif
         </div>
-<a href="/dog/{{$dog->id_dogs}}">
         <div class="card-footer">
         <small class="text-muted"><?php
         $date1 = new DateTime("now");
@@ -70,10 +66,11 @@ function format_interval(DateInterval $interval) {
 		$nowT2 = format_interval($interval2);?>
         <?=$nowT2;?></small>
       </div>
-    </div>
-    </div>
 </a>
+    </div>
+    </div>
     @endforeach
     </div>
+    {{ $dogs->links() }}
 </div>
 @endsection

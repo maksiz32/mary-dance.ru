@@ -1,54 +1,119 @@
 @extends('layouts.app')
+@push("head")
+<script src="{{ asset('/js/ckeditor/ckeditor.js') }}"
+type="text/javascript" charset="utf-8" ></script>
+@endpush
 
-@section('main')
 <?php $h = ($nes->id) ? $nes->title : "Добавление" ?>
 @section("title", $h . " - Новости")
 @section("main")
-<div class="container">
+
+<div class="container top60">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    
+        <div class="col-12">
                     <h1>@if ($nes->id) Правка новости {{ $nes->title }}
                         @else Добавление новости 
-                        @endif</h1></div>
-                    <div class="panel-body">    
-                <form action="{{ action('NewsController@save') }}" method="POST">
+                        @endif</h1>
+                <form action="{{ action('NewsController@save') }}" method="POST" enctype="multipart/form-data">
                     @if ($nes->id)
                     {{ method_field('PUT') }}                
                 <input type="hidden" name="id" value="{{ old('id', $nes->id) }}">
-                <input type="hidden" name="author" value="{{ old('author', $nes->author) }}">
-                <input type="text" name="id" value="<?php echo (new \DateTime())->format('Y-m-d');?>">
-                    @endif
+                @endif
+                <input type="hidden" name="author" value="MaryDance">
+                    <?php ($nes->id) ? $dateN = ($nes->date) : $dateN = (date("Y-m-d"));?>
+                <input type="hidden" name="date" value=<?php echo "'".$dateN."'";?>>
+                    
                     {{ csrf_field() }}
-                <label for="title" class="col-md-4 control-label">Заголовок новости:</label>                
-                <div class="col-md-6">
-                <input id="title" type="text" class="form-control" name="title" value="{{ old('title', $nes->title) }}" required>
-                </div>
+                <div class="form-group">
+                    <label for="title" class="col-md-4 control-label">Заголовок новости:</label>
+                    <input id="title" type="text" class="form-control" name="title" value="{{ old('title', $nes->title) }}" required>
                     @include("common.errors", ["el" => "title"])
-                <label for="text" class="col-md-4 control-label">Текст новости:</label>
-                <div class="col-md-6">
-                <input id="text" type="text" class="form-control" name="text" value="{{ old('text', $nes->text) }}" required>
                 </div>
+                <div class="form-group">
+                    <label for="text" class="col-md-4 control-label">Текст новости:</label>
+                    <textarea maxlength="2000" id="editor" class="form-control" name="text" required>{!! html_entity_decode (old('text', $nes->text))!!}</textarea>
+<script>
+    CKEDITOR.addCss('.cke_editable { font-size: 15px; padding: 2em; }');
+
+    CKEDITOR.replace('editor', {
+      toolbar: [{
+          name: 'document',
+          items: ['Print']
+        },
+        {
+          name: 'clipboard',
+          items: ['Undo', 'Redo']
+        },
+        {
+          name: 'styles',
+          items: ['Format', 'Font', 'FontSize']
+        },
+        {
+          name: 'colors',
+          items: ['TextColor', 'BGColor']
+        },
+        {
+          name: 'align',
+          items: ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']
+        },
+        '/',
+        {
+          name: 'basicstyles',
+          items: ['Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat', 'CopyFormatting']
+        },
+        {
+          name: 'links',
+          items: ['Link', 'Unlink']
+        },
+        {
+          name: 'paragraph',
+          items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote']
+        },
+        {
+          name: 'insert',
+          items: [/*'Image', */'Table']
+        },
+        {
+          name: 'tools',
+          items: ['Maximize']
+        },
+        {
+          name: 'editing',
+          items: ['Scayt']
+        }
+      ],
+
+      extraAllowedContent: 'h3{clear};h2{line-height};h2 h3{margin-left,margin-top}',
+
+      // Adding drag and drop image upload.
+      extraPlugins: 'print,format,font,colorbutton,justify',/*uploadimage',*/
+      uploadUrl: '/apps/ckfinder/3.4.4/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
+
+      // Configure your file manager integration. This example uses CKFinder 3 for PHP.
+      filebrowserBrowseUrl: '/apps/ckfinder/3.4.4/ckfinder.html',
+      filebrowserImageBrowseUrl: '/apps/ckfinder/3.4.4/ckfinder.html?type=Images',
+      filebrowserUploadUrl: '/apps/ckfinder/3.4.4/core/connector/php/connector.php?command=QuickUpload&type=Files',
+      filebrowserImageUploadUrl: '/apps/ckfinder/3.4.4/core/connector/php/connector.php?command=QuickUpload&type=Images',
+    
+      height: 560,
+
+      removeDialogTabs: 'image:advanced;link:advanced'
+    });
+  </script>
                     @include("common.errors", ["el" => "text"])
-                <label for="photo" class="col-md-4 control-label">Фотки:</label>
-                <div class="col-md-6">
-                <input id="photo" type="text" class="form-control" name="photo" value="{{ old('photo', $nes->photo) }}" required>
                 </div>
+                <div class="form-group">
+                    <label for="photo" class="col-md-4 control-label">Фотки:</label>
+                    <input id="photo" type="file" class="form-control" name="photo">
                     @include("common.errors", ["el" => "photo"])
-                
-                
+                </div>
                     <div class="col-md-8 col-md-offset-4">
                         <button type="submit" class="btn btn-primary">
                             Сохранить
                         </button>
                     </div>
-                
                 </form>
-                    </div>
-            </div>
         </div>
     </div>
 </div>
-@endsection
+

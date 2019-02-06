@@ -22,7 +22,7 @@ function format_interval(DateInterval $interval) {
 <h1>Наши новости</h1>
 <p>
 @if (auth()->check())
-      <a href="{{ route('news.create') }}" class="btn">Добавить новость</a>
+      <a href="{{ route('news.create') }}" class="btn btn-outline-info">Добавить новость</a>
 @endif
 </p>
   <div class="container">
@@ -30,35 +30,36 @@ function format_interval(DateInterval $interval) {
           
           @foreach ($news1 as $news)
           <div class="col-12">
-              
             <a href="/news/{{$news->id}}">
               <div class="card">
-                  
         <h5 class="mh-2 text-center">{{ $news->title }}</h5>
-                  
-        <div class="card-body">
+       <div class="row">
+           <div class="col-1"> </div>
             @if(!@empty($news->photo))
-                <div style="background: url('img/{{$news->photo}}') no-repeat 50% 50%; background-size: contain;">
-                h</div>              
+            <div class="col-3">
+                <img class="img-thumbnail h-n" src="{{ '../../myfiles/'.$news->photo }}">
+            </div>          
+            <div class="col-7">
+            {!! html_entity_decode($news->text) !!}
+            </div>
+            @else
+            <div class="col-10">
+            {!! html_entity_decode($news->text) !!}
+            </div>
             @endif
-            
-            <p class="card-text">{{ $news->text }}</p>                     
-        </div>
+            <div class="col-1"> </div>
+            </div>
         <div class="card-footer">
             Автор: {{ $news->author }} :: <small class="text-muted">
                 {{ $news->date }}
-                    <?php
-        $date1 = new DateTime("now");
-		$date3 = new DateTime($news->date);
-		$interval2 = $date1->diff($date3);
-		$nowT2 = format_interval($interval2);?>
-        <?=" (" . $nowT2 . " назад)";?></small>
+                    </small>
       </div>
     </div>
              </a> 
               
           </div>
           @endforeach
+          {{ $news1->links() }}
       </div>
   </div>
 @endsection

@@ -4,13 +4,12 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
+        public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        $this->call('LitterTableSeeder');
+        $this->command->info('operation completed successfully!');
+        $this->call('ContentTableSeeder');
+        $this->command->info('operation completed successfully!');
+
     }
 }

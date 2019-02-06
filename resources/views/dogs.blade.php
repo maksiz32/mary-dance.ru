@@ -25,17 +25,18 @@ function format_interval(DateInterval $interval) {
 <h1>Наши собаки</h1>
 <p>
 @if (auth()->check())
-      <a href="{{ route('dog.create', ['page' => '1']) }}" class="btn">Добавить собаку</a>
+      <a href="{{ route('dog.create', ['page' => '1']) }}" class="btn btn-outline-info">Добавить собаку</a>
 @endif
 </p>
 <div class="container">
 <div class="row">
     @foreach ($dogs as $dog)
-       <a href="/dog/{{$dog->id_dogs}}">
+       
     <div class="col-3">
+        <a href="/dog/{{$dog->id_dogs}}">
     <div class="card">
         @if($dog->photo)
-                <div class="card-img-top mh-8" style="background: url('img/{{$dog->photo}}') no-repeat 50% 50%; background-size: contain;">
+                <div class="card-img-top mh-8" style="background: url('./img/{{$dog->photo}}') no-repeat 50% 50%; background-size: contain;">
                 </div>
               @else
                 <div class="card-img-top mh-8" style="background: url('./img/nophoto.jpg') no-repeat 50% 50%; background-size: cover;">
@@ -45,7 +46,7 @@ function format_interval(DateInterval $interval) {
             <h5 class="card-title"><b>Имя:</b> {{ $dog->name }}</h5>
             <p class="card-text"><b>Пол:</b> {{ $dog->sex }}</p>
             <p class="card-text">{{ $dog->family }}</p>
-            </a>
+            
             @if ($dog->dbres)
             <p class="card-text"><b>Ссылка на родословную:</b> <small class="text-muted">{{ $dog->dbres }}</small></p>
             <?php /*
@@ -56,7 +57,7 @@ function format_interval(DateInterval $interval) {
              */?>
             @endif
         </div>
-<a href="/dog/{{$dog->id_dogs}}">
+
         <div class="card-footer">Возраст: 
         <small class="text-muted"><?php
         $date1 = new DateTime("now");
@@ -66,9 +67,11 @@ function format_interval(DateInterval $interval) {
         <?=$nowT2;?></small>
       </div>
     </div>
-    </div>
 </a>
+    </div>
+
     @endforeach
 </div>
+    {{ $dogs->links() }}
 </div>
 @endsection

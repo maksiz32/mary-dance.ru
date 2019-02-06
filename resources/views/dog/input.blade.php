@@ -18,8 +18,7 @@
   </script>
 @endpush
 
-@section('main')
-<?php $h = ($dog->id_dogs) ? $dog->name : "Добавление" ?>
+    <?php $h = ($dog->id_dogs) ? "Редактирование " . $dog->name : "Добавление" ?>
 @section("title", $h . " - Собаки")
 @section("main")
 <div class="container">
@@ -118,4 +117,4 @@
         </div>
     </div>
 </div>
-@endsection
+
