@@ -10,9 +10,9 @@ type="text/javascript" charset="utf-8" ></script>
     cb = document.getElementById(cb);
 	mat = document.getElementById(mat);
     if (cb.checked) {
-		mat.setAttribute('style', 'visibility:visible');
+		mat.setAttribute('style', 'display:block');
 	} else {
-		mat.setAttribute('style', 'visibility:hidden');
+		mat.setAttribute('style', 'display:none');
 	}
   }
 </script>
@@ -106,28 +106,23 @@ type="text/javascript" charset="utf-8" ></script>
       removeDialogTabs: 'image:advanced;link:advanced'
     });
 </script>
-            
-            </div>
+        </div>
         <div class="switch alert">
             <input class="switch-input" id="pr1" type="checkbox" name="modelSwitch[]" onchange='addName("pr1", "hidepr1");' value="Будем менять картинку слайда?">
             <label class="switch-paddle" for="pr1">Будем менять картинку слайда?</label>
         </div>
-        <div class="form-group" id="hidepr1" style="visibility:hidden">
+        <div class="form-group" id="hidepr1" style="display:none">
                 <label for="photo" class="col-md-4 control-label">Изображение:</label>
                 <input id="photo" type="file" class="form-control" name="photo">
-            
-            </div>
-          
+        </div>
                 <button type="submit" class="btn btn-primary">
                     Сохранить
                 </button>
-            
         </form>
         </div>
         @if ($content->photo)
         <div class="col-sm-3">
             <p>
-            Здесь картинка
             <img class="img-thumbnail" src="{{ $content->photo }}">
             </p>
         </div>

@@ -19,17 +19,17 @@ class MainController extends Controller
     public function input(Content $content) {
         return view ("contents.input", ["content" => $content]);
     }
-    /*
+    
     public function save(ContentRequest $request) {
         if ($request->has("id")) {
-      $cat = Content::findOrFail($request->id);
-      $cat->fill($request->all())->save();
-    } else {
-      $cat = Content::create($request->all());
-    }
+            $cat = Content::findOrFail($request->id);
+            $cat->fill($request->all())->save();
+        } else {
+            $cat = Content::create($request->all());
+        }
     return redirect()->action("MainController@all");
-  }
-  
+    }
+  /*
   public function destroy(Content $cont) {
     $delId = $cont->title;
     Content::destroy($cont->id);

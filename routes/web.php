@@ -35,9 +35,9 @@ Route::get("/files/{file}", "FileController@get");
 Route::get("/files/{file}/delete", "FileController@destroy");
 
 Route::get("/content", "MainController@all");
-//Route::get("/contents/create", "MainController@input")->name("contents.create");
-Route::put("/cont", "MainController@save");
+Route::get("/contents/create", "MainController@input")/*->name("contents.create")*/;
 Route::post("/cont", "MainController@save");
+//Route::put("/cont", "MainController@save");
 //Route::get("/cont/{content}/edit", "MainController@input");
 //Route::get("/cont/{content}/delete", "MainController@destroy");
 
