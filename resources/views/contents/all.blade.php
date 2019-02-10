@@ -4,6 +4,8 @@
 <div class="container top60">
 <h1>Все разделы</h1>
 <p>
+@section("status")
+@endsection
 @if (auth()->check())
       <a href="{{ route('contents.create') }}" class="btn btn-outline-info">Добавить раздел</a>
 @endif
@@ -30,11 +32,11 @@
                 <th>
                     @if (auth()->check())
                     <p>
-                        <a href="{{ action('MainController@input', ['id' => $conts->id]) }}">
+                        <a href="{{ action('MainController@input', ['id' => $conts->id]) }}" class="btn btn-primary">
                             Редактировать
                         </a>
                     </p>
-                        <a href="{{ action('MainController@destroy', ['id' => $conts->id]) }}" class="adel">
+                        <a href="{{ action('MainController@destroy', ['id' => $conts->id]) }}" class="btn btn-success">
                             Удалить
                         </a>
                     @endif

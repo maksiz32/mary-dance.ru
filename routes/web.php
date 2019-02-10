@@ -23,7 +23,7 @@ Route::get("/dog/{id_dogs}", "DogController@view");
 Route::get("/dog/{id_dogs}/{firstPhoto}", "DogController@view");
 
 Route::get("/news/create", "NewsController@input")->name("news.create");
-Route::get('/news', 'NewsController@index');
+Route::get("/news", "NewsController@index");
 Route::put("/news", "NewsController@save");
 Route::post("/news", "NewsController@save");
 Route::get("/news/{id}", "NewsController@view");
@@ -35,10 +35,9 @@ Route::get("/files/{file}", "FileController@get");
 Route::get("/files/{file}/delete", "FileController@destroy");
 
 Route::get("/content", "MainController@all");
-Route::get("/contents/create", "MainController@input")/*->name("contents.create")*/;
-Route::post("/cont", "MainController@save");
-//Route::put("/cont", "MainController@save");
-//Route::get("/cont/{content}/edit", "MainController@input");
-//Route::get("/cont/{content}/delete", "MainController@destroy");
+Route::get("/contents/create", "MainController@input")->name("contents.create");
+Route::match(["post", "put"], "/cont", "MainController@save");
+Route::get("/cont/{content}/edit", "MainController@input");
+Route::get("/cont/{content}/delete", "MainController@destroy");
 
 Auth::routes();
