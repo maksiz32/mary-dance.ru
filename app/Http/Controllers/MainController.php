@@ -12,7 +12,7 @@ class MainController extends Controller
     }
     
     public function all() {
-        return view("contents.all", ["cont" => Content::forEditConent()]);
+        return view("contents.all", ["cont" => Content::mainPage()]);
     }
     
     public function input(Content $content) {
@@ -28,11 +28,15 @@ class MainController extends Controller
         }
     return redirect()->action("MainController@all");
     }
-  
-  public function destroy(Content $content) {
-    Content::destroy($content->id);
-    return redirect()->action("MainController@all")
-    ->with("status", "Раздел " . $content->title . " удалён");
-  }
+    
+    public function destroy(Content $content) {
+        Content::destroy($content->id);
+        return redirect()->action("MainController@all")
+                ->with("status", "Раздел " . $content->title . " удалён");
+        }
+        
+    public function onepart() {
+        return view("contents.part", ["content" => Content::mainPage()]);
+    }
 }
 

@@ -47,16 +47,35 @@
 </nav>
         </header>
     <section>
-        <div class="container-fluid top60">
-        @if (session('status'))
-            <p>{{ session('status') }}</p>
-        @endif
+        <div class="top60">
         @yield("main")
         </div>
     </section>
-    <footer>
-        
+    <footer class="footer">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-4">
+                  <span class="text-muted">Содержимое футера, в который мы добавим адреса и информацию о владельце.</span>
+              </div>
+              <div class="col-4">
+                  <span class="text-muted">Содержимое футера, в который мы добавим различные ссылки на разделы сайта.</span>
+              </div>
+              <div class="col-4">
+                  <?php
+                  $start_Year = "2018";
+                  $this_Year = date('Y');
+                  if ($start_Year == $this_Year) {
+                      $years = $start_Year;
+                  } else {
+                      $years = "{$start_Year} - {$this_Year}";
+                      }
+                  ?>
+                  <span class="text-muted">Содержимое футера, в который мы добавим информацию об авторских правах.
+                      <br />&copy; &nbsp;&nbsp;&nbsp;<?=$years?>
+                  </span>
+              </div>
+          </div>
+      </div>
     </footer>
-
 </body>
 </html>

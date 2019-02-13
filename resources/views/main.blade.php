@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section("title", "Главная")
 @section("main")
-    <div id="carouselMainControls" class="carousel slide carousel-fade" data-ride="carousel">
+<div id="carouselMainControls" class="container-fluid carousel slide carousel-fade" data-ride="carousel">
         
   <ol class="carousel-indicators">
 @for($i = 0; $i < $count; $i++)
@@ -39,8 +39,10 @@
           <div class="col-lg-4">
             <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
           <h2>{{ $cont->title }}</h2>
-          <p>{!! html_entity_decode($cont->pageContent) !!}</p>
-          <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
+          <p>
+              <?php echo (html_entity_decode(mb_strimwidth($cont->pageContent,0,300,"...",mb_internal_encoding()))); ?>
+          </p>
+          <p><a class="btn btn-secondary" href="{{ action('MainController@onepart', ['id' => $cont->id]) }}" role="button">Перейти в раздел <span class="oi oi-share" title="Перейти" aria-hidden="true"></span></a></p>
         </div>
 @endforeach
         </div>

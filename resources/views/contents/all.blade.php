@@ -1,15 +1,16 @@
 @extends('layouts.app')
 @section("title", "Все разделы")
 @section("main")
-<div class="container top60">
 <h1>Все разделы</h1>
+@if (session('status'))
+    <p>{{ session('status') }}</p>
+@endif
 <p>
-@section("status")
-@endsection
 @if (auth()->check())
       <a href="{{ route('contents.create') }}" class="btn btn-outline-info">Добавить раздел</a>
 @endif
 </p>
+<div class="container">
 <div class="row">
     <table class="table table-striped table-bordered">
         <caption>Список разделов для просмотра и редактирования</caption>

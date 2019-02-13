@@ -39,5 +39,6 @@ Route::get("/contents/create", "MainController@input")->name("contents.create");
 Route::match(["post", "put"], "/cont", "MainController@save");
 Route::get("/cont/{content}/edit", "MainController@input");
 Route::get("/cont/{content}/delete", "MainController@destroy");
+Route::get("/cont/{content}/part", "MainController@onepart");
 
 Auth::routes();
