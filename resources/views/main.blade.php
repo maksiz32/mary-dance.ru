@@ -1,14 +1,12 @@
 @extends('layouts.app')
 @section("title", "Главная")
 @section("main")
-<div id="carouselMainControls" class="container-fluid carousel slide carousel-fade" data-ride="carousel">
-        
+<div id="carouselMainControls" class="container-fluid carousel slide carousel-fade" data-ride="carousel">        
   <ol class="carousel-indicators">
 @for($i = 0; $i < $count; $i++)
     <li data-target="#carouselExampleIndicators" data-slide-to="$i" <?php if ($i==0) { echo 'class="active"'; }?>></li>
 @endfor
   </ol>
-
   <div class="carousel-inner">
     <?php $i=0; ?>
 @foreach ($content as $cont)
@@ -17,7 +15,9 @@
             <div class="carousel-caption d-none d-md-block">
                 <h5>{{ $cont->title }}</h5>
                 <p>
+                    <a href="#{{ $cont->id }}" class="text-white">
                 <?php echo (html_entity_decode(mb_strimwidth($cont->pageContent,0,200,"...",mb_internal_encoding()))); ?>
+                    </a>
                 </p>
             </div>
     </div>
@@ -36,8 +36,7 @@
     <div class="container marketing">
         <div class="row">
 @foreach ($content as $cont)
-          <div class="col-lg-4">
-            <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+        <div class="col-lg-4" id="{{ $cont->id }}">
           <h2>{{ $cont->title }}</h2>
           <p>
               <?php echo (html_entity_decode(mb_strimwidth($cont->pageContent,0,300,"...",mb_internal_encoding()))); ?>

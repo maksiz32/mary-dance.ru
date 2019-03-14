@@ -16,6 +16,14 @@ body {
     font-weight: 900;
 }
 
+.for3 {
+    font-family: 'ScriptinaPro', Bookman Old Style, Helvetica, sans-serif;
+    font-size: 4em;
+    color: red;
+    font-weight: 900;
+    text-shadow: 2px 2px 10px black;
+}
+
 .top60 {
     margin-top: 60px;
 }
@@ -54,3 +62,27 @@ body {
 .h-n {
     max-height: 200px;
 }
+
+.w-100-p {
+    max-width: 100px;
+}
+
+.mosaicflow__item { 
+      padding:3px; 
+    } 
+.mosaicflow__column { 
+      float:left; 
+    } 
+.mosaicflow__item img { 
+      display:block; 
+      width:100%; 
+      height:auto; 
+      padding: 4px; 
+      background-color: #fff; 
+      border: 1px solid #ddd; 
+      border-radius: 4px; 
+    } 
+.mosaicflow__item img:hover { 
+      opacity: 0.6; 
+      filter: alpha(opacity=60); 
+    } 

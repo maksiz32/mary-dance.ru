@@ -34,21 +34,36 @@ class NewsController extends Controller
       $s = " исправлена";
     } elseif ($request->file("photo")) {
         //ПЕРЕНЕСТИ ЛОГИКУ В МОДЕЛЬ
+        
+        ##############################################
+        ##                                          ##
+        ##  ВМЕСТО СЫРОГО SQL-ЗАПРОСА ИСПОЛЬЗОВАТЬ  ##
+        ##  МОДЕЛЬ OurNews                          ##
+        ##                                          ##
+        ##############################################
+        
         $time_rep = time();        
         $exch = $request->file('photo')->getClientOriginalExtension();
         $name = $time_rep . '_mary-dance_ru' . '.' . $exch;
         $path = $request->file('photo')->storeAs('img', $name, 'my_files');
         $news = DB::insert('insert into our_news (title, date, photo, text, author) values (?, ?, ?, ?, ?)', 
                 [$request->title, $request->date, $path, $request->text, $request->author]);
-      $s = " создана";    
+        $s = " создана";    
     } else {
         $news = DB::insert('insert into our_news (title, date, text, author) values (?, ?, ?, ?)', 
                 [$request->title, $request->date, $request->text, $request->author]);
-      $s = " создана";
+        $s = " создана";
     }
         $news = $request->title;
     return redirect()->action("NewsController@index")
     ->with("status", "Новость " . $news . $s);
   }
+  
+  public function destroy(OurNews $nes) {
+    $name = $nes->title;
+    OurNews::destroy($nes->id);
+    return redirect()->action("NewsController@index")
+    ->with("status", "Запись " . $name . " удалена");
+}
   
 }

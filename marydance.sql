@@ -24,9 +24,9 @@ CREATE TABLE `contents` (
 
 TRUNCATE `contents`;
 INSERT INTO `contents` (`id`, `title`, `pageContent`, `photo`, `created_at`, `updated_at`) VALUES
-(1,	'Molestias itaque illo eum beatae nam sint ullam.',	'Hatter: \'I\'m on the same size: to be no use in talking to him,\' said Alice in a piteous tone. And the executioner myself,\' said the Gryphon: and it sat for a great hurry; \'and their names were. || March Hare, who had been jumping about like that!\' said Alice as it happens; and if the Queen never left off when they saw her, they hurried back to the porpoise, \"Keep back, please: we don\'t want.',	'https://lorempixel.com/960/427/?88959',	'2019-02-04 14:18:37',	'2019-02-04 14:18:37'),
-(2,	'Iste eos consequuntur ea a ipsum est.',	'Some of the Rabbit\'s voice along--\'Catch him, you by the soldiers, who of course you don\'t!\' the Hatter continued, \'in this way:-- \"Up above the world you fly, Like a tea-tray in the air. \'--as far. || THAT is--\"Take care of themselves.\"\' \'How fond she is such a thing before, but she could see it written up somewhere.\' Down, down, down. There was nothing so VERY nearly at the end of the same age.',	'https://lorempixel.com/960/427/?27484',	'2019-02-04 14:18:37',	'2019-02-04 14:18:37'),
-(3,	'Aut quia repellendus accusamus sed necessitatibus harum consectetur eum.',	'Rabbit\'s voice along--\'Catch him, you by the officers of the Lobster Quadrille?\' the Gryphon repeated impatiently: \'it begins \"I passed by his garden.\"\' Alice did not at all know whether it was. || Soup! \'Beautiful Soup! Who cares for you?\' said the youth, \'one would hardly suppose That your eye was as long as I do,\' said the Pigeon in a trembling voice:-- \'I passed by his face only, she would.',	'https://lorempixel.com/960/427/?52485',	'2019-02-04 14:18:37',	'2019-02-04 14:18:37');
+(1,	'Iure qui quod eos ut quis aliquam fugit.',	'I\'d only been the whiting,\' said Alice, in a hurry: a large dish of tarts upon it: they looked so good, that it was over at last: \'and I wish I could show you our cat Dinah: I think I may as well. || The Gryphon sat up and beg for its dinner, and all that,\' said the Hatter. \'It isn\'t mine,\' said the Caterpillar. \'Well, I\'ve tried hedges,\' the Pigeon in a Little Bill It was opened by another.',	'https://lorempixel.com/960/427/?48736',	'2019-02-22 15:58:03',	'2019-02-22 15:58:03'),
+(2,	'Dolor adipisci soluta autem accusamus.',	'<p>He says it kills all the party were placed along the sea-shore--&#39; &#39;Two lines!&#39; cried the Mock Turtle replied, counting off the mushroom, and raised herself to some tea and bread-and-butter, and then. || I give you fair warning,&#39; shouted the Queen, pointing to the baby, the shriek of the house down!&#39; said the Dormouse; &#39;--well in.&#39; This answer so confused poor Alice, &#39;it would have appeared to them.</p>',	'img/main/1550864883_mary-dance_ru.jpg',	'2019-02-22 15:58:03',	'2019-02-22 15:58:03'),
+(3,	'Ut odit ut provident quia mollitia debitis dolor.',	'Alice dear!\' said her sister; \'Why, what a dear little puppy it was!\' said Alice, a good many voices all talking together: she made it out to her that she had looked under it, and then turned to the. || Alice went timidly up to her lips. \'I know SOMETHING interesting is sure to happen,\' she said to the beginning again?\' Alice ventured to say. \'What is it?\' \'Why,\' said the Gryphon. \'They can\'t have.',	'https://lorempixel.com/960/427/?37455',	'2019-02-22 15:58:03',	'2019-02-22 15:58:03');
 
 DROP TABLE IF EXISTS `dogs_photos`;
 CREATE TABLE `dogs_photos` (
@@ -65,7 +65,7 @@ CREATE TABLE `litters` (
 
 TRUNCATE `litters`;
 INSERT INTO `litters` (`id`, `litter`, `created_at`, `updated_at`) VALUES
-(1,	'A',	'2019-02-04 14:18:36',	'2019-02-04 14:18:36');
+(1,	'A',	'2019-02-22 15:58:02',	'2019-02-22 15:58:02');
 
 DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE `migrations` (
@@ -73,44 +73,47 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 TRUNCATE `migrations`;
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (3,	'2014_10_12_000000_create_users_table',	1),
 (4,	'2014_10_12_100000_create_password_resets_table',	1),
 (6,	'2019_01_29_114353_create_litters_table',	2),
-(9,	'2019_01_30_152942_create_contents_table',	3);
+(9,	'2019_01_30_152942_create_contents_table',	3),
+(10,	'2019_02_21_201527_create_ourDogs_table',	4);
 
 DROP TABLE IF EXISTS `our_dogs`;
 CREATE TABLE `our_dogs` (
-  `id_dogs` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `sex` int(1) unsigned NOT NULL,
-  `name` varchar(30) NOT NULL,
+  `id_dogs` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `sex` tinyint(3) unsigned NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `date_age` date NOT NULL,
-  `family` varchar(3) NOT NULL,
-  `dbres` varchar(100) DEFAULT NULL,
-  `sale` int(1) unsigned NOT NULL,
-  `little` int(1) unsigned NOT NULL,
-  `updated_at` date DEFAULT NULL,
-  `created_at` date DEFAULT NULL,
-  PRIMARY KEY (`id_dogs`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
+  `family` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `dbres` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sale` tinyint(3) unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id_dogs`),
+  UNIQUE KEY `our_dogs_id_dogs_unique` (`id_dogs`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 TRUNCATE `our_dogs`;
-INSERT INTO `our_dogs` (`id_dogs`, `sex`, `name`, `date_age`, `family`, `dbres`, `sale`, `little`, `updated_at`, `created_at`) VALUES
-(1,	0,	'Сучка',	'2018-02-05',	'ЛЕ2',	'http://www.ccddb.com/local/foo/bar.html',	1,	0,	'2019-01-19',	NULL),
-(3,	0,	'3',	'2018-02-15',	'kll',	'www.ccddb.com/local/foo/bar.html',	1,	0,	NULL,	NULL),
-(4,	1,	'4',	'2018-02-15',	'wcd',	'http://ccddb.com/local/foo/bar.html',	0,	0,	NULL,	NULL),
-(5,	1,	'5',	'2018-02-15',	'wcd',	'ccddb.com/local/foo/bar.html',	1,	0,	NULL,	NULL),
-(8,	0,	'8',	'2018-02-15',	'ddd',	'http://ccddb.com/local/foo/',	0,	0,	NULL,	NULL),
-(11,	0,	'11',	'2017-02-15',	'wcd',	NULL,	1,	0,	NULL,	NULL),
-(20,	2,	'1234',	'2018-07-06',	'444',	NULL,	0,	0,	NULL,	NULL),
-(22,	0,	'321',	'2017-07-20',	'222',	NULL,	1,	1,	NULL,	NULL),
-(24,	2,	'13225465',	'2018-03-03',	'A',	'http://www.2ccddb.com/louless/foo/bar/baz.html',	0,	1,	NULL,	NULL),
-(38,	2,	'ввв',	'2018-08-01',	'в1',	'',	0,	1,	NULL,	NULL),
-(39,	0,	'1111111',	'2018-04-01',	'А',	NULL,	0,	0,	'2019-01-19',	'2019-01-19'),
-(40,	1,	'121212',	'2019-01-01',	'n',	NULL,	0,	0,	'2019-01-23',	'2019-01-23');
+INSERT INTO `our_dogs` (`id_dogs`, `sex`, `name`, `date_age`, `family`, `dbres`, `sale`, `created_at`, `updated_at`) VALUES
+(1,	1,	'Бобров Ефим Романович',	'1983-08-08',	NULL,	'http://uvarov.com/harum-saepe-natus-nisi-quos-esse',	1,	'2019-02-22 15:58:03',	'2019-02-22 15:58:03'),
+(2,	1,	'Дмитрий Дмитриевич Ермаков',	'1984-02-17',	NULL,	'http://veselov.org/qui-ad-facilis-et-rerum-iste-ea-sed',	1,	'2019-02-22 15:58:03',	'2019-02-22 15:58:03'),
+(3,	1,	'Федосья Александровна Осипова',	'1983-07-08',	NULL,	'http://noskov.org/non-molestiae-sint-adipisci-et-ipsam',	0,	'2019-02-22 15:58:03',	'2019-02-22 15:58:03'),
+(4,	1,	'Инесса Борисовна Петухова',	'1978-02-05',	NULL,	'http://www.dyckov.com/dignissimos-necessitatibus-aliquid-fuga-magni-voluptatum',	0,	'2019-02-22 15:58:03',	'2019-02-22 15:58:03'),
+(5,	0,	'Кузьмин Михаил Александрович',	'1986-12-10',	NULL,	'http://www.gavrilov.net/dolor-nesciunt-error-fugiat',	0,	'2019-02-22 15:58:03',	'2019-02-22 15:58:03'),
+(6,	1,	'Дмитрий Сергеевич Журавлёв',	'2011-01-09',	NULL,	'https://seleznev.com/aut-ut-hic-optio.html',	0,	'2019-02-22 15:58:03',	'2019-02-22 15:58:03'),
+(7,	1,	'Андреев Сава Евгеньевич',	'2003-02-11',	NULL,	'http://fomicev.com/',	1,	'2019-02-22 15:58:03',	'2019-02-22 15:58:03'),
+(8,	0,	'Иванова Оксана Львовна',	'1978-04-22',	NULL,	'http://kulikov.net/',	0,	'2019-02-22 15:58:03',	'2019-02-22 15:58:03'),
+(9,	0,	'Исаева Светлана Фёдоровна',	'1988-03-25',	NULL,	'http://kotov.org/id-quis-sed-eos-dignissimos-ad-et-doloremque-dolores.html',	1,	'2019-02-22 15:58:03',	'2019-02-22 15:58:03'),
+(10,	0,	'Самсонов Олег Алексеевич',	'2014-08-12',	NULL,	'http://www.stepanov.ru/natus-recusandae-inventore-atque-impedit-voluptas-rerum.html',	1,	'2019-02-22 15:58:03',	'2019-02-22 15:58:03'),
+(11,	1,	'Анжелика Сергеевна Воробьёва',	'1973-11-13',	NULL,	'http://kulakov.net/id-in-quia-et-officia-nam-sed',	1,	'2019-02-22 15:58:03',	'2019-02-22 15:58:03'),
+(12,	0,	'Эрик Максимович Поляков',	'1996-02-23',	NULL,	'https://nazarov.ru/doloremque-autem-odio-tempore-ea.html',	1,	'2019-02-22 15:58:03',	'2019-02-22 15:58:03'),
+(13,	0,	'Алексей Алексеевич Борисов',	'1974-11-04',	NULL,	'http://fedotov.com/eaque-dolorem-doloremque-error',	1,	'2019-02-22 15:58:03',	'2019-02-22 15:58:03'),
+(14,	1,	'Корнилов Лаврентий Сергеевич',	'2011-04-26',	NULL,	'http://vorobev.com/fugiat-aliquid-aliquam-fugiat-velit.html',	1,	'2019-02-22 15:58:03',	'2019-02-22 15:58:03');
 
 DROP TABLE IF EXISTS `our_news`;
 CREATE TABLE `our_news` (
@@ -174,7 +177,7 @@ CREATE TABLE `users` (
 
 TRUNCATE `users`;
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1,	'Maksim',	'maks-manzulin@mail.ru',	'$2y$10$tg2/beB5ybKkspTe/UcUmukQvu3t4bg.EzzFJ.Pxm9hmUzZMVs6TS',	'm',	'lanDgwQnLxDOlTJ7SIHuGQVPqk53xY8UxaMpjbui9lE1UebQdl7vVG65nwOM',	'2019-01-13 14:32:32',	'2019-01-13 14:39:24'),
+(1,	'Maksim',	'maks-manzulin@mail.ru',	'$2y$10$tg2/beB5ybKkspTe/UcUmukQvu3t4bg.EzzFJ.Pxm9hmUzZMVs6TS',	'm',	'CjeQIJ4SbgNJuQqt0lXhriGQlqL4VZY2uhOseqX7rknp0LPBD0qktIrU2V1l',	'2019-01-13 14:32:32',	'2019-01-13 14:39:24'),
 (2,	'М',	'maria-nastasina@yandex.ru',	'$2y$10$tg2/beB5ybKkspTe/UcUmukQvu3t4bg.EzzFJ.Pxm9hmUzZMVs6TS',	'm',	'jYZ7VYEdnhL0A5aZgYPTApE7c7TdQ39KzkHtOMX1ZdDQD3rzGx1F4mOWQwTl',	NULL,	'2019-02-04 05:32:44');
 
--- 2019-02-04 18:19:41
+-- 2019-02-22 19:54:13

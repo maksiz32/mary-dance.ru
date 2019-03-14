@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section("title", "Новости")
 @section("main")
 <?php
@@ -18,18 +17,15 @@ function format_interval(DateInterval $interval) {
     return $result;
 }
 ?>
-
-<h1>Наши новости</h1>
 <p>
 @if (auth()->check())
       <a href="{{ route('news.create') }}" class="btn btn-outline-info">Добавить новость</a>
 @endif
 </p>
-  <div class="container">
-      <div class="row">
-          
+  <div class="container-fluid">
+      <div class="row justify-content-md-center">
           @foreach ($news1 as $news)
-          <div class="col-12">
+          <div class="col-10">
             <a href="/news/{{$news->id}}">
               <div class="card">
         <h5 class="mh-2 text-center">{{ $news->title }}</h5>
@@ -37,7 +33,7 @@ function format_interval(DateInterval $interval) {
            <div class="col-1"> </div>
             @if(!@empty($news->photo))
             <div class="col-3">
-                <img class="img-thumbnail h-n" src="{{ '../../myfiles/'.$news->photo }}">
+                <img class="img-thumbnail h-n" src="{{ $news->photo }}">
             </div>          
             <div class="col-7">
             {!! html_entity_decode($news->text) !!}
@@ -54,12 +50,11 @@ function format_interval(DateInterval $interval) {
                 {{ $news->date }}
                     </small>
       </div>
-    </div>
-             </a> 
-              
+              </div>
+            </a>
           </div>
           @endforeach
-          {{ $news1->links() }}
       </div>
+        {{ $news1->links() }}
   </div>
 @endsection

@@ -16,26 +16,13 @@ function format_interval(DateInterval $interval) {
     return $result;
 }
 ?>
-  <script src="{{ asset('/js/jquery.js') }}"></script>
-  <script src="{{ asset('/js/jquery-ui.js') }}"></script>
-  <script src="{{ asset('/js/what-input.js') }}"></script>
-  <script>
-      $(document).ready(function() {
-          $('#dogsDate').datepicker({
-              changeMonth: true,
-              changeYear: true,
-              yearRange: '-120:+0',
-              width: 500,
-              dateFormat: 'yy-mm-dd', //или метку через: dateFormat : '@',
-              monthNames: [ "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" ]
-   	});
-    }); // end ready
-  </script>
 @endpush
 @section('main')
-<?php $h = "Информация :: " . ($dog->id_dogs) ?>
+<?php $h = "Информация :: " . ($dog->name) ?>
 @section("title", $h . "")
+<div class="p-3 mb-2 bg-secondary text-white text-center">
 <h1>{{ $dog->name }}</h1>
+</div>
 <div class="container">
     <div class="row">
         <div class="col-md-7 col-md-offset-2">
@@ -43,11 +30,19 @@ function format_interval(DateInterval $interval) {
                 <div class="panel-heading">                    
                     <div class="panel-body">                
         <div class="card-body">
-            <h5 class="card-title">{{ $dog->name }}</h5>
-            <p class="card-text">{{ $dog->sex }}</p>
-            <p class="card-text">{{ $dog->family }}</p>
+            <h5 class="card-title"><strong>{{ $dog->name }}</strong></h5>
+            <p class="card-text"><strong>Пол: </strong>
+                @if ($dog->sex == 0)
+                Сука
+                @else
+                Кобель
+                @endif
+            </p>
+            <p class="card-text"><strong>Помет: </strong>{{ $dog->family }}</p>
             @if ($dog->dbres)
+            <a href="{{ $dog->dbres }}" target="_blank">
             <div class="text-center">{{ $dog->dbres }}</div>
+            </a>
             @endif
         </div>
         <div class="card-footer">
@@ -67,7 +62,7 @@ function format_interval(DateInterval $interval) {
                     @foreach ($photo as $photoDog)
                         <div class="col-md-3 col-md-offset-2">
                             <a href="/dog/{{$dog->id_dogs}}/{{$photoDog->id}}">
-                            <img class="img-thumbnail" src="../../img/{{ $photoDog->photo }}" alt="{{ $photoDog->photo }}">
+                            <img class="img-thumbnail" src="{{ $photoDog->photo }}" alt="{{ $photoDog->photo }}">
                             </a>
                         </div>
                     @endforeach
@@ -76,15 +71,14 @@ function format_interval(DateInterval $interval) {
             </div>
     </div>
         <div class="col-md-5 col-md-offset-2 row">
-            <div class="col-12 justify-content-md-center justify-content-md-center">
-                
+            <div class="col-12 justify-content-md-center justify-content-md-center">                
                 @if (@isset($firstPhoto))
                 @foreach($firstPhoto as $firstPhoto1)
-                <img class="img-fluid" src="../../img/{{ $firstPhoto1->photo }}" alt="{{ $firstPhoto1->photo }}">
+                <img class="img-fluid" src="{{ $firstPhoto1->photo }}" alt="{{ $firstPhoto1->photo }}">
                 @endforeach
                 @elseif (($photo->count()) >= 1)
                 <?php $valPhoto = $photo[0]->photo; ?>
-                <img class="img-fluid" src="../../img/{{ $valPhoto }}">
+                <img class="img-fluid" src="{{ $valPhoto }}">
                 @endif
             </div>
         </div>

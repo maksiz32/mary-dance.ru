@@ -1,12 +1,11 @@
 @extends('layouts.app')
+<?php $h = ($nes->id) ? $nes->title : "Добавление" ?>
+@section("title", $h . " - Новости")
+@section("main")
 @push("head")
 <script src="{{ asset('/js/ckeditor/ckeditor.js') }}"
 type="text/javascript" charset="utf-8" ></script>
 @endpush
-
-<?php $h = ($nes->id) ? $nes->title : "Добавление" ?>
-@section("title", $h . " - Новости")
-@section("main")
 
 <div class="container top60">
     <div class="row">
@@ -21,13 +20,11 @@ type="text/javascript" charset="utf-8" ></script>
                 @endif
                 <input type="hidden" name="author" value="MaryDance">
                     <?php ($nes->id) ? $dateN = ($nes->date) : $dateN = (date("Y-m-d"));?>
-                <input type="hidden" name="date" value=<?php echo "'".$dateN."'";?>>
-                    
+                <input type="hidden" name="date" value=<?php echo "'".$dateN."'";?> />
                     {{ csrf_field() }}
                 <div class="form-group">
                     <label for="title" class="col-md-4 control-label">Заголовок новости:</label>
                     <input id="title" type="text" class="form-control" name="title" value="{{ old('title', $nes->title) }}" required>
-                    @include("common.errors", ["el" => "title"])
                 </div>
                 <div class="form-group">
                     <label for="text" class="col-md-4 control-label">Текст новости:</label>
@@ -100,12 +97,10 @@ type="text/javascript" charset="utf-8" ></script>
       removeDialogTabs: 'image:advanced;link:advanced'
     });
   </script>
-                    @include("common.errors", ["el" => "text"])
                 </div>
                 <div class="form-group">
                     <label for="photo" class="col-md-4 control-label">Фотки:</label>
                     <input id="photo" type="file" class="form-control" name="photo">
-                    @include("common.errors", ["el" => "photo"])
                 </div>
                     <div class="col-md-8 col-md-offset-4">
                         <button type="submit" class="btn btn-primary">
@@ -116,4 +111,4 @@ type="text/javascript" charset="utf-8" ></script>
         </div>
     </div>
 </div>
-
+@endsection

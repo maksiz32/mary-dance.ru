@@ -33,11 +33,11 @@
     <div class="navbar-nav">
         <?php $p = request()->path(); ?>
         <a class="nav-item nav-link <?php if ($p == '/') { echo 'active'; } ?>" href="/">Главная</a>
-      <a class="nav-item nav-link <?php if ($p == 'dogs1') { echo 'active'; } ?>" href="/dogs1">Щенки</a>
+      <a class="nav-item nav-link <?php if ($p == 'dogs1') { echo 'active'; } ?>" href="/litters">Помёты</a>
       <a class="nav-item nav-link <?php if ($p == 'dogs') { echo 'active'; } ?>" href="/dogs">Наши собаки</a>
       <a class="nav-item nav-link <?php if ($p == 'news') { echo 'active'; } ?>" href="/news">Новости</a>
       @if (auth()->check())
-      <a class="nav-item nav-link <?php if ($p == 'admmary') { echo 'active'; } ?>" href="/admmary">Admin</a>
+      <a class="nav-item nav-link <?php if ($p == 'adm') { echo 'active'; } ?>" href="/adm">Admin</a>
       <a class="nav-item nav-link" href="/logout">Выход</a>
       @else
       <a class="nav-item nav-link" href="/login"><span class="oi oi-account-login" title="Вход" aria-hidden="true"></span></a>

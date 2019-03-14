@@ -24,9 +24,10 @@
             </tr>
         </thead>
         <tbody>
+            <?php $i=1;?>
     @foreach ($cont as $conts)
             <tr>
-                <th scope="row">{{ $conts->id }}</th>
+                <th scope="row">{{ $i }}</th>
                 <th>{{ $conts->photo }}</th>
                 <th>{{ $conts->title }}</th>
                 <th>{!! html_entity_decode($conts->pageContent) !!}</th>
@@ -37,12 +38,13 @@
                             Редактировать
                         </a>
                     </p>
-                        <a href="{{ action('MainController@destroy', ['id' => $conts->id]) }}" class="btn btn-success">
+                        <a href="{{ action('MainController@destroy', ['id' => $conts->id]) }}" class="btn btn-success" onclick="return confirm('Подтверждаете удаление?')">
                             Удалить
                         </a>
                     @endif
                 </th>
             </tr>
+            <?php $i++;?>
     @endforeach
         </tbody>
     </table>

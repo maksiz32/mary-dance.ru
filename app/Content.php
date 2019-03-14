@@ -16,4 +16,8 @@ class Content extends Model
     public static function mainCount() {
         return DB::table("contents")->count();
     }
+    
+    public static function delPhoto($id) {
+        return DB::table("contents")->where("id", $id)->value("photo");
+    }
 }

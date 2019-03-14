@@ -10,7 +10,7 @@
             <div class="row">
             @if(!@empty($nes->photo))
             <div class="col-3">
-                <img class="img-thumbnail h-n" src="{{ '../../myfiles/'.$nes->photo }}">
+                <img class="img-thumbnail h-n" src="{{ $nes->photo }}">
             </div>
             <div class="col-9">
             <p class="card-text">{!! html_entity_decode($nes->text) !!}</p>
@@ -29,6 +29,14 @@
         </small>
       </div>       
     </div>
+            @if (auth()->check())
+            <a href="{{ action('NewsController@input', ['id' => $nes->id]) }}" class="btn btn-primary btn-lg btn-block">
+                Редактировать
+            </a>
+            <a href="{{ action('NewsController@destroy', ['nes' => $nes->id]) }}" class="btn btn-success btn-lg btn-block" onclick="return confirm('Подтверждаете удаление?')">
+                Удалить
+            </a>
+            @endif
     </div>    
 </div>
 </div>

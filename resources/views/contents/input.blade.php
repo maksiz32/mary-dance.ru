@@ -20,7 +20,7 @@ type="text/javascript" charset="utf-8" ></script>
 <div class="container top60">
     <div class="row">
         <div class="col-sm-9">
-        <h1>@if ($content->id) Редактирование разделов {{ $content->title }}
+        <h1>@if ($content->id) Редактирование раздела {{ $content->title }}
             @else Добавление раздела 
             @endif
         </h1>
@@ -32,14 +32,14 @@ type="text/javascript" charset="utf-8" ></script>
         {{ csrf_field() }}
         <div class="form-group">
             <label for="title" class="col-md-4 control-label">Заголовок раздела:</label>
-            <input id="title" type="text" class="form-control" name="title" value="{{ old('title', $content->title) }}" required>
+            <input id="title" type="text" placeholder="Название заголовка" class="form-control" name="title" value="{{ old('title', $content->title) }}" required>
                 
         </div>
         <div class="form-group">
             <label for="text" class="col-md-4 control-label">Основной текст раздела:</label>
             <textarea maxlength="1000000" id="editor" class="form-control" name="pageContent" required>{!! html_entity_decode(old('pageContent', $content->pageContent))!!}</textarea>
 <script>
-    CKEDITOR.addCss('.cke_editable { font-size: 15px; padding: 1em; }');
+    CKEDITOR.addCss('.cke_editable { font-size: 15px; padding: 2em; }');
 
     CKEDITOR.replace('editor', {
       toolbar: [{
@@ -101,15 +101,23 @@ type="text/javascript" charset="utf-8" ></script>
       filebrowserUploadUrl: '/apps/ckfinder/3.4.4/core/connector/php/connector.php?command=QuickUpload&type=Files',
       filebrowserImageUploadUrl: '/apps/ckfinder/3.4.4/core/connector/php/connector.php?command=QuickUpload&type=Images',
     
-      height: 200,
+      height: 560,
 
       removeDialogTabs: 'image:advanced;link:advanced'
     });
-</script>
+  </script>
+
         </div>
         <div class="switch alert">
             <input class="switch-input" id="pr1" type="checkbox" name="modelSwitch[]" onchange='addName("pr1", "hidepr1");' value="Будем менять картинку слайда?">
-            <label class="switch-paddle" for="pr1">Будем менять картинку слайда?</label>
+            
+            <label class="switch-paddle" for="pr1">
+                @if ($content->id)
+                Будем менять картинку слайда?
+                @else
+                Будем добавлять картинку слайда?
+                @endif
+            </label>
         </div>
         <div class="form-group" id="hidepr1" style="display:none">
                 <label for="photo" class="col-md-4 control-label">Изображение:</label>
@@ -123,7 +131,7 @@ type="text/javascript" charset="utf-8" ></script>
         @if ($content->photo)
         <div class="col-sm-3">
             <p>
-            <img class="img-thumbnail" src="{{ $content->photo }}">
+            <img class="img-thumbnail" src="<?php public_path();?>/{{ $content->photo }}">
             </p>
         </div>
         @endif
