@@ -7,10 +7,10 @@ Route::get('/dogs', 'DogController@dogs');
 Auth::routes();
 Route::get("logout", "Auth\LoginController@logout");
 
-//Route::get("/users", "UserController@index");
+Route::get("/users", "UserController@index");
 Route::get("/users/{user}/edit", "UserController@input");
-//Route::put("/users", "UserController@save");
-//Route::get("/users/{user}/delete", "UserController@destroy");
+Route::put("/users", "UserController@save");
+Route::get("/users/{user}/delete", "UserController@destroy");
 
 Route::get("/content", "MainController@all");
 Route::get("/contents/create", "MainController@input")->name("contents.create");
@@ -47,5 +47,3 @@ Route::get("/news/{id}/edit", "NewsController@input");
 Route::get("/news/{nes}/delete", "NewsController@destroy");
 
 Route::get("/adm", "MainController@main");
-
-Auth::routes();

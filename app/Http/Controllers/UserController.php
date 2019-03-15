@@ -9,8 +9,8 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UserController extends Controller {
   public function __construct() {
-    //parent::__construct();
-    //$this->middleware("can:manipulate,App\User");
+    parent::__construct();
+    $this->middleware("auth");
   }
   
   public function index() {
@@ -29,13 +29,12 @@ class UserController extends Controller {
     return redirect()->action("UserController@index")
     ->with("status", "Пользователь " . $user->name . " исправлен");
   }
-/*
+
   public function destroy(User $user) {
     $name = $user->name;
     $user->delete();
     return redirect()->action("UserController@index")
     ->with("status", "Пользователь " . $name . " удалён");
   }
- * 
- */
+ 
 }

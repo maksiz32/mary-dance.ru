@@ -9,13 +9,10 @@
     <input type="hidden" name="id" value="{{ old("id", $user->id) }}">
     <label>Имя</label>
     <input type="text" name="name" value="{{ old('name', $user->name) }}" required>
-    @include("common.errors", ["el" => "name"])
     <label>E-mail</label>
     <input type="email" name="email" value="{{ old('email', $user->email) }}" required>
-    @include("common.errors", ["el" => "email"])
     <label>Pass</label>
     <input type="text" name="password" value="{{ old('password', $user->password) }}" required>
-    @include("common.errors", ["el" => "password"])
     <label>Роль</label>
     <?php $r = old('role', $user->role); ?>
     <select name="role">
@@ -26,4 +23,4 @@
     <input type="submit" value="Сохранить">
   </form>
   <p><a href="/users">Список пользователей</a></p>
-
+@endsection

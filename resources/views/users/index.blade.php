@@ -3,7 +3,7 @@
 @section("title", "Пользователи")
 @section("main")
   <h1>Список пользователей</h1>
-  <table class="list">
+  <table>
     <tr>
       <th>E-mail</th>
       <th>Имя</th>
@@ -20,10 +20,8 @@
           ['user' => $user->id]) }}">Исправить</a>
         </td>
         <td class="links">
-        <!--
           <a href="{{ action('UserController@destroy',
           ['user' => $user->id]) }}" class="adel">Удалить</a>
-        -->
         </td>
       </tr>
     @endforeach

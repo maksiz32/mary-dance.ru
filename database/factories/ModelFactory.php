@@ -2,8 +2,8 @@
 $factory->define(App\Content::class, function (Faker\Generator $faker) {    
     $faker = Faker\Factory::create('ru_RU');
     return [
-        'title' => $faker-> sentence,
-        'pageContent' => $faker-> realText . ' || ' . $faker-> realText,
+        'title' => $faker->sentence,
+        'pageContent' => $faker->realText . ' || ' . $faker->realText,
         'photo' => $faker->imageUrl($width = 960, $height = 427),
     ];
 });
@@ -54,4 +54,13 @@ $factory->define(App\OurNews::class, function (Faker\Generator $faker) {
              . ' || ' . $faker-> realText . ' || ' . $faker-> realText,
         'author' => $faker->name,
     ];
+});
+$factory->define(App\User::class, function (Faker\Generator $faker) {    
+    $faker = Faker\Factory::create('ru_RU');
+    return [
+            'name' => 'Maksim',
+            'email' => 'maks-manzulin@mail.ru',
+            'password' => bcrypt('123456Qw'),
+            'role' => 'm',
+        ];
 });

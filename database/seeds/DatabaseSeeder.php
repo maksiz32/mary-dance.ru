@@ -17,5 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->command->info('operation PhotoSchen completed successfully!');
         $this->call('OurNewsTableSeeder');
         $this->command->info('operation OurNews completed successfully!');
+        $this->call('UserTableSeeder');
+        $this->command->info('operation User completed successfully!');
     }
 }
