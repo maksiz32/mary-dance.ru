@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\Storage;
 
 class LitterController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware("auth")->only(["input", "photo", "delPhoto", 
+            "savePhoto", "save", "destroy"]);
+    }
+    
     public function index() {        
         return view("litters", ["litt" => Litter::mainPage()]);
     }
@@ -40,13 +46,15 @@ class LitterController extends Controller
     public function savePhoto(PhotoSchenRequest $request) {
         //dd($request->photo);
         $paths = [];
+        $i = 0;
         foreach($request->photo as $image) {
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $imageName = time() . $i . '_marydance' . '.' . $image->getClientOriginalExtension();
             $path1 = $image->storeAs('img/litter', $imageName, 'my_files');
             $paths[] = [
                 'idLitt' => $request->id,
                 'photo' => $path1,
                 ];
+            $i++;
         }
         DB::table('photo_schens')->insert($paths);
         return back()->with('status', 'Image Uploaded successfully.');

@@ -17,7 +17,7 @@ function rndColor() {
 <p>{{ session('status') }}</p>
 @endif
   @foreach ($litt as $litters)
-     <a href="{{ action('LitterController@vlitt', ['id' => $litters->id]) }}">
+     <a class="nonund" href="{{ action('LitterController@vlitt', ['id' => $litters->id]) }}">
     <div class="card card-body shadow" style="background-color:<?= rndColor(); ?>;">        
     <div class="row align-items-center text-center">
         <div class="col-lg-4">
@@ -35,7 +35,7 @@ function rndColor() {
             {{ $litters->name1 }}
         </div>
         <div class="col-lg-4 text-center">
-            {{ $litters->descrp }}
+            <?php echo (html_entity_decode($litters->descrp));?>
         </div>
         <div class="col-lg-4 text-right">
             {{ $litters->name2 }}
@@ -45,6 +45,7 @@ function rndColor() {
 <div class="row text-center">
     <div class="col">
         <br />
+    </a>
             <a href="{{ action('LitterController@input', ['id' => $litters->id]) }}" class="btn btn-primary btn-lg btn-block">
                 Редактировать
             </a>
@@ -58,7 +59,7 @@ function rndColor() {
 </div>
 @endif
     </div>
-    </a>
     @endforeach
+        {{ $litt->links() }}
 </div>
 @endsection

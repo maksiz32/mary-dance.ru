@@ -119,7 +119,7 @@ type="text/javascript" charset="utf-8" ></script>
             </select>
             <label for="photo1" class="col-md-4 control-label">Изображение собаки 1:</label>
             @if ($litt->id)
-            <img class="img-thumbnail w-100-p" src="<?php public_path();?>/{{ $litt->photo1 }}" alt="{{ $litt->photo1 }}">
+            <img class="img-thumbnail w-100-p" src="{{ asset($litt->photo1) }}" alt="{{ $litt->photo1 }}">
             <br />
             <input class="switch-input" id="pr1" type="checkbox" name="sw1" onchange='addName("pr1", "photo1");' value="dog1">
             Будем менять картинку собаки1?<br />
@@ -138,7 +138,7 @@ type="text/javascript" charset="utf-8" ></script>
             </select>        
             <label for="photo2" class="col-md-4 control-label">Изображение собаки 2:</label>
             @if ($litt->id)
-            <img class="img-thumbnail w-100-p" src="<?php public_path();?>/{{ $litt->photo2 }}" alt="{{ $litt->photo2 }}">
+            <img class="img-thumbnail w-100-p" src="{{ asset($litt->photo2) }}" alt="{{ $litt->photo2 }}">
             <br />
             <input class="switch-input" id="pr2" type="checkbox" name="sw2" onchange='addName("pr2", "photo2");' value="dog2">
             Будем менять картинку собаки2?<br />

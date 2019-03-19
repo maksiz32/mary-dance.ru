@@ -12,7 +12,6 @@ class CreateOurDogsTable extends Migration
             $table->unsignedTinyInteger('sex');
             $table->string('name');
             $table->date('date_age');
-            $table->string('family', 3)->nullable();
             $table->string('dbres')->nullable();
             $table->unsignedTinyInteger('sale');
             $table->timestamps();

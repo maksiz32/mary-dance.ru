@@ -28,7 +28,9 @@
     @foreach ($cont as $conts)
             <tr>
                 <th scope="row">{{ $i }}</th>
-                <th>{{ $conts->photo }}</th>
+                <th>
+                    <img class="img-thumbnail" src="{{ $conts->photo }}">
+                </th>
                 <th>{{ $conts->title }}</th>
                 <th>{!! html_entity_decode($conts->pageContent) !!}</th>
                 <th>

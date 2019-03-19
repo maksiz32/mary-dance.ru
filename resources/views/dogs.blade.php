@@ -19,7 +19,7 @@ function format_interval(DateInterval $interval) {
 ?>
 <p>
 @if (auth()->check())
-      <a href="{{ route('dog.create', ['page' => '1']) }}" class="btn btn-outline-info">Добавить собаку</a>
+<a href="{{ route("dogs.create") }}" class="btn btn-outline-info">Добавить собаку</a>
 @endif
 </p>
 <div class="container">
@@ -27,7 +27,7 @@ function format_interval(DateInterval $interval) {
 @foreach ($dogs as $dog)
     <div class="col-3">
     <div class="card">
-        <a href="/dog/{{$dog->id_dogs}}">
+        <a class="nonund" href="/dog/{{$dog->id_dogs}}">
         @if($dog->photo)
             <div class="card-img-top mh-8" style="background: url('{{$dog->photo}}') no-repeat 50% 50%; background-size: contain;">
             </div>
@@ -44,7 +44,6 @@ function format_interval(DateInterval $interval) {
                 Кобель
                 @endif
             </p>
-            <p class="card-text">Помёт: {{ $dog->family }}</p>
         @if ($dog->dbres)
             <p class="card-text"><b>Ссылка на родословную:</b> <small class="text-muted">{{ $dog->dbres }}</small></p>
         @endif

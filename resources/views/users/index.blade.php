@@ -19,10 +19,12 @@
           <a href="{{ action('UserController@input',
           ['user' => $user->id]) }}">Исправить</a>
         </td>
+        <!--
         <td class="links">
           <a href="{{ action('UserController@destroy',
           ['user' => $user->id]) }}" class="adel">Удалить</a>
         </td>
+        -->
       </tr>
     @endforeach
   </table>

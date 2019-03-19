@@ -38,4 +38,10 @@ class LoginController extends Controller {
       $this->username() => 'Не верные имя пользователя или пароль',
     ]);
   }
+  
+  public function username()
+{
+    return 'name';
+}
+
 }

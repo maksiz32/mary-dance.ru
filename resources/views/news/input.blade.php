@@ -6,13 +6,26 @@
 <script src="{{ asset('/js/ckeditor/ckeditor.js') }}"
 type="text/javascript" charset="utf-8" ></script>
 @endpush
-
 <div class="container top60">
     <div class="row">
         <div class="col-12">
                     <h1>@if ($nes->id) Правка новости {{ $nes->title }}
                         @else Добавление новости 
                         @endif</h1>
+            
+                            @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                        </ul>
+                    </div>
+                @endif
+                @if (session('status'))
+                <p>{{ session('status') }}</p>
+                @endif
+                
                 <form action="{{ action('NewsController@save') }}" method="POST" enctype="multipart/form-data">
                     @if ($nes->id)
                     {{ method_field('PUT') }}                

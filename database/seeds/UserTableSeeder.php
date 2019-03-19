@@ -11,6 +11,6 @@ class UserTableSeeder extends Seeder
         DB::statement("SET foreign_key_checks=0");
         User::truncate();
         DB::statement("SET foreign_key_checks=1");
-        factory(User::class, 1)->create();
+        factory(User::class, 2)->create();
     }
 }

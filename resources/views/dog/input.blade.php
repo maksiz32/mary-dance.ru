@@ -19,26 +19,28 @@
 </script>
 @endpush
 <div class="container top60">
-    <div class="row">
-        <div class="col-sm-9">
             <h1>@if ($dog->id_dogs) Правка информации о собаке {{ $dog->name }}
                 @else Добавление новой собаки 
                 @endif
-            </h1>   
+            </h1>
+    <div class="row justify-content-md-center">
+        <div class="col-md-7 col-lg-7">
             <form action="{{ action('DogController@save') }}" method="POST">
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                        </ul>
+                    </div>
+                @endif
                 @if ($dog->id_dogs)
-                {{ method_field('PUT') }}                
+                {{ method_field('PUT') }}
             <input type="hidden" name="id_dogs" value="{{ old('id_dogs', $dog->id_dogs) }}">
                 @endif
                 {{ csrf_field() }}
-                <?php
-                    if (!empty(filter_input(INPUT_GET, 'page'))) {
-                        $page = filter_input(INPUT_GET, 'page');
-                    } else {
-                        $page = "";
-                    }
-                ?>
-                <input type="hidden" name="page" value="{{ old('page', $page) }}">                    
+                <div class="form-group">
                 <label for="sex" class="col-md-4 control-label">Пол собачки:</label>
                     <select name="sex" required>
                     @if ($dog->sex == 0)
@@ -49,16 +51,16 @@
                         <option value="1" selected>Кобель</option>
                     @endif
                     </select>
+                </div>
+                <div class="form-group">
                 <label for="name" class="col-md-4 control-label">Имя</label>
                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name', $dog->name) }}" required>
+                </div>
                 <label for="date_age" class="col-md-4 control-label">Дата рождения</label>
                 <input id="dogsDate" type="text" class="form-control" name="date_age" value="{{ old('dateDog', $dog->date_age) }}" required>
-                <label for="family" class="col-md-4 control-label">Помёт:</label>
-                <div class="col-md-6">
-                <input id="family" type="text" class="form-control" name="family" value="{{ old('family', $dog->family) }}" required>
-                </div>
                 <label for="dbres" class="col-md-4 control-label">Ссылка на БД:</label>
                 <input id="dbres" type="text" class="form-control" name="dbres" value="{{ old('dbres', $dog->dbres) }}">
+                <div class="form-group">
                 <label for="sale" class="col-md-4 control-label">На продажу?</label>
                     <select name="sale" required>
                     @if ($dog->sale == 0)
@@ -69,21 +71,40 @@
                         <option value="1" selected>Да</option>
                     @endif
                     </select>
-                <label for="little" class="col-md-4 control-label">Собака/Щенок?</label>
-                    <select name="little" required>
-                    @if ($dog->little == 0)
-                        <option value="0" selected>Собака</option>
-                        <option value="1">Щенок</option>
-                    @else
-                        <option value="0">Собака</option>
-                        <option value="1" selected>Щенок</option>
-                    @endif
-                </select>
+                </div>
                 <button type="submit" class="btn btn-primary">
                     Сохранить
                 </button>
             </form>
         </div>
+        <div class="col-md-5 col-lg-5">
+            <div class="row">
+                    @foreach ($photo as $photoDog)
+                        <div class="col-md-4">
+                            <img class="img-thumbnail" src="{{ asset($photoDog->photo) }}" alt="{{ $photoDog->photo }}">
+                            <a href="{{ action('DogController@delphoto', ['idDog' => $photoDog->id_dogs, 'photo' => $photoDog->id]) }}" class="btn btn-success btn-lg btn-block" onclick="return confirm('Подтверждаете удаление?')">
+                                Удалить
+                            </a>
+                        </div>
+                    @endforeach
+            </div>
+        </div>
     </div>
+    <hr />
+    <div class="p-1 bg-secondary text-white text-center">
+    <h3>Добавить изображения здесь:</h3>
+</div>
+<form action="{{ action('DogController@savePhoto') }}" method="POST" enctype="multipart/form-data">
+{{ method_field('PUT') }}                
+<input type="hidden" name="id" value="{{ $dog->id_dogs }}">
+{{ csrf_field() }}
+<div class="form-group" id="hidepr1">
+    <label for="photo[]" class="col-md-4 control-label">Изображения:</label>
+    <input id="photo" type="file" class="form-control" name="photo[]" required multiple>
+</div>
+    <button type="submit" class="btn btn-primary">
+        Сохранить
+    </button>
+</form>
 </div>
 @endsection

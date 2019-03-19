@@ -25,8 +25,6 @@ $factory->define(App\Our_dog::class, function (Faker\Generator $faker) {
         'sex' => $faker->randomElement($array = array (0, 1)),
         'name' => $faker->name,
         'date_age' => $faker->date($format = 'Y-m-d', $max = 'now'),
-        'family' => $faker->randomElement($array = 
-                array ("A","B","C","D","E","F","G")),
         'dbres' => $faker->url,
         'sale' => $faker->randomElement($array = array (0, 1)),
     ];
@@ -55,8 +53,8 @@ $factory->define(App\OurNews::class, function (Faker\Generator $faker) {
         'author' => $faker->name,
     ];
 });
-$factory->define(App\User::class, function (Faker\Generator $faker) {    
-    $faker = Faker\Factory::create('ru_RU');
+/*
+$factory->define(App\User::class, function () {
     return [
             'name' => 'Maksim',
             'email' => 'maks-manzulin@mail.ru',
@@ -64,3 +62,5 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
             'role' => 'm',
         ];
 });
+ * 
+ */

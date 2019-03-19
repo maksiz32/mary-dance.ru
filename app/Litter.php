@@ -14,7 +14,7 @@ class Litter extends Model
                 ->select('our_dogs.name AS name1', 'p.name AS name2', 'litters.*')
                 ->join('our_dogs', 'our_dogs.id_dogs', 'litters.idDog1')
                 ->join('our_dogs as p', 'p.id_dogs', 'litters.idDog2')
-                ->get();
+                ->paginate(4);;
         return $temp;        
     }
     

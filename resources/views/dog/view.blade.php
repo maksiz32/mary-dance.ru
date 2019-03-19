@@ -38,7 +38,6 @@ function format_interval(DateInterval $interval) {
                 Кобель
                 @endif
             </p>
-            <p class="card-text"><strong>Помет: </strong>{{ $dog->family }}</p>
             @if ($dog->dbres)
             <a href="{{ $dog->dbres }}" target="_blank">
             <div class="text-center">{{ $dog->dbres }}</div>

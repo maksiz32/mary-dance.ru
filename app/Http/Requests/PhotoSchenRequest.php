@@ -13,15 +13,17 @@ class PhotoSchenRequest extends FormRequest
     public function rules()
     {
         return [
-            'photo' => 'required|image|max:5000',
+            'photo' => 'required|max:10000',
+            'photo.*' => 'mimes:jpeg,jpg,bmp,png',
         ];
     }
     
     public function messages() {
         return [
             'photo.required' => 'Это обязательное поле',
-            'photo.image' => 'Допустимы только файлы изображений',
-            'photo.max' => 'Не более 5 Мбайт',
+            'photo.max' => 'Не более 10 Мбайт',
+            'photo.mimes' => 'Только следующий тип файла jpg, bmp, png'
         ];
     }
+    
 }

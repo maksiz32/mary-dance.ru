@@ -25,7 +25,9 @@
 <body>
         <header>
             <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="/"><div class="for2"><strong>MaryDance</strong></div></a>
+                <a class="navbar-brand" href="/"><div class="for2">
+                        <img class="logo" src="{{asset('/logo/logo4.png')}}">
+                        <strong>MaryDance</strong></div></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -34,7 +36,7 @@
         <?php $p = request()->path(); ?>
         <a class="nav-item nav-link <?php if ($p == '/') { echo 'active'; } ?>" href="/">Главная</a>
       <a class="nav-item nav-link <?php if ($p == 'dogs1') { echo 'active'; } ?>" href="/litters">Помёты</a>
-      <a class="nav-item nav-link <?php if ($p == 'dogs') { echo 'active'; } ?>" href="/dogs">Наши собаки</a>
+      <a class="nav-item nav-link <?php if ($p == 'dogs') { echo 'active'; } ?>" href="/alldogs">Наши собаки</a>
       <a class="nav-item nav-link <?php if ($p == 'news') { echo 'active'; } ?>" href="/news">Новости</a>
       @if (auth()->check())
       <a class="nav-item nav-link <?php if ($p == 'adm') { echo 'active'; } ?>" href="/adm">Admin</a>

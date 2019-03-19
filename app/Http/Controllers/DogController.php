@@ -7,18 +7,43 @@ use App\Our_dog;
 use App\Dogs_photo;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\DogRequest;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\DogsPhotoRequest;
 
 class DogController extends Controller
 {
     public function __construct() {
-    //parent::__construct();
-    //$this->middleware("can:manipulate,App\Dog")->except("view");
-  }
+        $this->middleware("auth")->only(["input", "save", "destroy"]);
+    }
     
-    public function dogs() {
+    public function alldogs() {
         return view("dogs", ["dogs" => Our_dog::ourDogs()]);
     }
-      
+    
+    public function delphoto($idDog, $photo) {
+        dd($photo);
+        Dogs_photo::destroy($photo);
+        Storage::disk("my_files")->delete(Dogs_photo::delDiskPhoto($photo));
+        return redirect()->action("DogController@input", ["dogy" => $idDog]);
+    }
+    
+    public function savePhoto(DogsPhotoRequest $request) {
+        //dd($request);
+        $paths = [];
+        $i = 0;
+        foreach($request->photo as $image) {
+            $imageName = time() . $i . '_marydance' . '.' . $image->getClientOriginalExtension();
+            $path1 = $image->storeAs('img/dogs', $imageName, 'my_files');
+            $paths[] = [
+                'id_dogs' => $request->id,
+                'photo' => $path1,
+                ];
+            $i++;
+        }
+        DB::table('dogs_photos')->insert($paths);
+        return back()->with('status', 'Image Uploaded successfully.');
+    }
+    
     public function view(Our_dog $id_dogs, $id=null) {
       if (isset($id)) {
           $photos = DB::table("dogs_photos")->where("id_dogs", "=", $id_dogs->id_dogs)->get();
@@ -37,8 +62,9 @@ class DogController extends Controller
       }
     }
     
-    public function input(Our_dog $dogy, $page = null) {
-        return view ("dog.input", ["dog" => $dogy, $page = $page]);
+    public function input(Our_dog $dogy) {
+        $photos = DB::table("dogs_photos")->where("id_dogs", "=", $dogy->id_dogs)->get();
+        return view ("dog.input", ["dog" => $dogy, "photo" => $photos]);
     }
     
     public function save(DogRequest $request) {
@@ -46,23 +72,20 @@ class DogController extends Controller
       $dog = Our_dog::findOrFail($request->id_dogs);
       $dog->fill($request->all())->save();
       $s = " исправлена";
+      return redirect()->action("DogController@view", ['id_dogs' => $request->id_dogs])
+              ->with("status", "Запись о собаке " . $dog->name . $s);
     } else {
       $dog = Our_dog::create($request->all());
       $s = " создана";
+    return redirect()->action("DogController@alldogs")
+            ->with("status", "Запись о собаке " . $dog->name . $s);
     }
-    if ($request->page === '1') {
-        $page = 'dogs';
-    } else {
-        $page = 'index';
-    }
-    return redirect()->action("DogController@$page")
-    ->with("status", "Запись о собаке " . $dog->name . $s);
   }
     
-  public function destroy(App\Our_dog $category) {
-    $name = $category->name;
-    $category->delete();
-    return redirect()->action("DogController@index")
+  public function destroy(Our_dog $dogy) {
+    $name = $dogy->name;
+    $dogy->delete();
+    return redirect()->action("DogController@alldogs")
     ->with("status", "Запись о собаке " . $name . " удалена");
   }
 }

@@ -11,11 +11,11 @@ class NewsController extends Controller
 {
     public function __construct()
     {
-        //$this->middleware('auth')->except(["news", "view"]);
+        $this->middleware("auth")->only(["input", "save", "destroy"]);
     }
     
     public function index() {
-        $news = DB::table("our_news")->orderBy("id", "desc")->paginate(6);
+        $news = DB::table("our_news")->orderBy("id", "desc")->paginate(4);
         return view("news", ["news1" => $news]);
     }
     
@@ -28,30 +28,56 @@ class NewsController extends Controller
     }
     
     public function save(NewsRequest $request) {
+        //dd($request->photo);
     if ($request->has("id")) {
-      $news = OurNews::findOrFail($request->id);
-      $news->fill($request->all())->save();
+        if ($request->photo) {
+            $image = $request->photo;
+            $imageName = time() . '_marydance' . '.' . $image->getClientOriginalExtension();
+            $path1 = $image->storeAs('img/news', $imageName, 'my_files');
+            $arrUpdate = [
+                'title' => $request->title,
+                'date' => $request->date,
+                'photo' => $path1,
+                'text' => $request->text,
+                'author' => $request->author,
+            ];
+        } else {
+        /*
+        $news = OurNews::findOrFail($request->id);
+        $news->fill($request->all())->save();
+         * 
+         */
+            $arrUpdate = [
+                'title' => $request->title,
+                'date' => $request->date,
+                'text' => $request->text,
+                'author' => $request->author,
+            ];
+        }
+        DB::table('our_news')->where('id', $request->id)->update($arrUpdate);
       $s = " исправлена";
-    } elseif ($request->file("photo")) {
-        //ПЕРЕНЕСТИ ЛОГИКУ В МОДЕЛЬ
-        
-        ##############################################
-        ##                                          ##
-        ##  ВМЕСТО СЫРОГО SQL-ЗАПРОСА ИСПОЛЬЗОВАТЬ  ##
-        ##  МОДЕЛЬ OurNews                          ##
-        ##                                          ##
-        ##############################################
-        
-        $time_rep = time();        
-        $exch = $request->file('photo')->getClientOriginalExtension();
-        $name = $time_rep . '_mary-dance_ru' . '.' . $exch;
-        $path = $request->file('photo')->storeAs('img', $name, 'my_files');
-        $news = DB::insert('insert into our_news (title, date, photo, text, author) values (?, ?, ?, ?, ?)', 
-                [$request->title, $request->date, $path, $request->text, $request->author]);
-        $s = " создана";    
     } else {
-        $news = DB::insert('insert into our_news (title, date, text, author) values (?, ?, ?, ?)', 
-                [$request->title, $request->date, $request->text, $request->author]);
+        if ($request->photo) {
+        //ПЕРЕНЕСТИ ЛОГИКУ В МОДЕЛЬ
+        $image = $request->photo;
+            $imageName = time() . '_marydance' . '.' . $image->getClientOriginalExtension();
+            $path1 = $image->storeAs('img/news', $imageName, 'my_files');
+            $arrInsert = [
+                'title' => $request->title,
+                'date' => $request->date,
+                'photo' => $path1,
+                'text' => $request->text,
+                'author' => $request->author,
+                ];
+    } else {
+        $arrInsert = [
+                'title' => $request->title,
+                'date' => $request->date,
+                'text' => $request->text,
+                'author' => $request->author,
+                ];
+    }
+        DB::table('our_news')->insert($arrInsert);
         $s = " создана";
     }
         $news = $request->title;

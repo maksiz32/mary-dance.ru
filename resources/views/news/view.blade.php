@@ -10,7 +10,7 @@
             <div class="row">
             @if(!@empty($nes->photo))
             <div class="col-3">
-                <img class="img-thumbnail h-n" src="{{ $nes->photo }}">
+                <img class="img-thumbnail h-n" src="{{ asset($nes->photo) }}">
             </div>
             <div class="col-9">
             <p class="card-text">{!! html_entity_decode($nes->text) !!}</p>

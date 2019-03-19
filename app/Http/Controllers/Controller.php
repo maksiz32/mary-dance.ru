@@ -12,7 +12,7 @@ class Controller extends BaseController {
   
   public $isMobile = false;
   public $parentView;
-
+/*
   public function __construct() {
     $userAgent = strtolower(request()->header("User-Agent"));
     if (preg_match("/phone|iphone|itouch|ipod|symbian|android|htc_|" .
@@ -26,10 +26,12 @@ class Controller extends BaseController {
         $this->isMobile = true;
       }
     }
+    /*
     if ($this->isMobile) {
       $this->parentView = "layouts.mobile";
     } else {
       $this->parentView = "layouts.pc";
     }
-  }
+     
+  }*/
 }

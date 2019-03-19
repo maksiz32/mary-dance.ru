@@ -1,12 +1,10 @@
 <?php
 Route::get('/', 'MainController@index');
-
 Route::get('/litters', 'LitterController@index');
-Route::get('/dogs', 'DogController@dogs');
-
-Auth::routes();
+Route::get('/alldogs', 'DogController@alldogs');
+Route::get("/login", "Auth\LoginController@showLoginForm")->name("login");
+Route::post("/login", "Auth\LoginController@login");
 Route::get("logout", "Auth\LoginController@logout");
-
 Route::get("/users", "UserController@index");
 Route::get("/users/{user}/edit", "UserController@input");
 Route::put("/users", "UserController@save");
@@ -30,13 +28,13 @@ Route::get("/litter/{id}/{photo}/delphoto", "LitterController@delphoto");
 
 Route::get("/dog/{id_dogs}", "DogController@view");
 Route::get("/dog/{id_dogs}/{firstPhoto}", "DogController@view");
-
-Route::get("/dog", "DogController@index");
-Route::get("/dog/create", "DogController@input")
-->name("dog.create");
+//Route::get("/dog", "DogController@index");
+Route::get("/dogs/create", "DogController@input")->name("dogs.create");
 Route::match(["post", "put"], "/dog", "DogController@save");
-Route::get("/dog/{dogy}/edit", "DogController@input");
-Route::get("/dog/{dogy}/delete", "DogController@destroy");
+Route::get("/dogs/{dogy}/edit", "DogController@input");
+Route::get("/dogs/{dogy}/delete", "DogController@destroy");
+Route::match(["post", "put"], "/dogs", "DogController@savePhoto");
+Route::get("/dogs/{id}/{photo}/delphoto", "DogController@delphoto");
 
 Route::get("/news/create", "NewsController@input")->name("news.create");
 Route::get("/news", "NewsController@index");

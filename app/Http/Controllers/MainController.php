@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Storage;
 
 class MainController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware("auth")->only(["all", "main", "input", "save", "destroy"]);
+    }
+    
     public function index() {        
         return view("main", ["content" => Content::mainPage(), "count" => Content::mainCount()]);
     }

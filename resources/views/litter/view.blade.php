@@ -4,17 +4,17 @@
 @section('main')
 <div class="container-fluid">
 <div class="p-3 mb-2 bg-secondary text-white text-center">
-    <h1>{{ $litter->litter }}</h1>
+    <h1>{{ strtoupper($litter->litter) }}</h1>
 </div>
     <div class="row align-items-center text-center">
         <div class="col-lg-3">
-            <img class="h-n" src="{{ $litter->photo1 }}">
+            <img class="h-n" src="{{ asset($litter->photo1) }}">
         </div>
         <div class="col-lg-6 text-center">
-            {!! strtoupper($litter->descrp) !!}
+            {!! $litter->descrp !!}
         </div>
         <div class="col-lg-3">
-            <img class="h-n" src="{{ $litter->photo2 }}">
+            <img class="h-n" src="{{ asset($litter->photo2) }}">
         </div>
     </div>
     <div class="row align-items-center">
@@ -34,7 +34,7 @@
 @foreach ($photo as $photka)
 <div class="col-lg-3 col-md-4 col-6">
     <a class="fancyimage" rel="group" href="{{ $photka->photo }}" target="_blanck">
-        <img class="img-fluid" src="{{ $photka->photo }}" alt="">
+        <img class="img-fluid" src="{{ asset($photka->photo) }}" alt="">
     </a>
 </div>
 @endforeach

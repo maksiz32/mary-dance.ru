@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 
 class Our_dog extends Model
 {
-    protected $fillable = ["name", "sex", "date_age", "family", "dbres"];    
+    protected $fillable = ["name", "sex", "date_age", "dbres", "sale"];    
     protected $primaryKey = 'id_dogs';
     
     public function dogs_photos() {

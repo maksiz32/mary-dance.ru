@@ -17,7 +17,7 @@ class NewsRequest extends FormRequest
             'date' => 'required',
             'author' => 'required',
             'title' => 'required|max:500',
-            'text' => 'required|max:2000',
+            'text' => 'required|max:8000',
         ];
     }
     
@@ -28,7 +28,7 @@ class NewsRequest extends FormRequest
         'title.required' => 'Надо обязательно указать заголовок',
         'title.max' => 'Не более 500 символов',
         'text.required' => 'Обязательное поле',
-        'text.max' => 'Не более 2000 символов',
+        'text.max' => 'Не более 8000 символов',
     ];
   }
 }
