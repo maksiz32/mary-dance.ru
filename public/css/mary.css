@@ -32,7 +32,7 @@ body {
     width: 100%;
     margin-top: 100px;
     padding: 20px;
-    height: 160px;
+    height: 210px;
     background-color: #f5f5f5;
 }
 
@@ -67,6 +67,10 @@ body {
     max-width: 100px;
 }
 
+h-70 {
+    height: 20% !important;
+}
+
 .mosaicflow__item { 
       padding:3px; 
 } 
@@ -89,7 +93,8 @@ body {
 
 .ui-datepicker {
     background-color: white !important;
-    border: 3px solid black;
+    border: 2px solid black;
+    border-radius: 10px;
     z-index: 1000;
 }
     
@@ -99,4 +104,79 @@ a.nonund:hover {
 
 .logo {
     height: 45px;
+}
+
+.logofoot {
+    height: 120px;
+}
+
+.cont4car{
+	position:relative;
+	width:800px;
+	margin:50px;
+	color:rgba(255, 255, 255, .8);
+}
+.cont4car .head4car{
+	overflow:hidden;
+	margin:0 20px 0 -10px;
+	font-size:2em;
+	line-height:1em;
+	white-space:nowrap;
+}
+.cont4car .body4car{
+	margin:0;
+	padding:15px 30px 30px;
+	font-style:italic;
+}
+.cont4car:before,
+.cont4car:after,
+.cont4car .body4car:after,
+.cont4car .head4car:after{
+	border:3px solid rgba(255, 255, 255, .8);
+}
+.cont4car:before,
+.cont4car:after,
+.cont4car .body4car:after{
+	content:"";
+	position:absolute;
+	bottom:0;
+}
+.cont4car:before,
+.cont4car:after{
+	box-sizing:border-box;
+	width:20px;
+}
+.cont4car:before{
+	top:1.2em;
+	right:0;
+	border-left:0;
+}
+.cont4car:after{
+	top:2.4em;
+	left:0;
+	border-top:0;
+	border-right:0;
+}
+.cont4car.rounded:before{
+	border-radius:0 20px 20px 0;
+}
+.cont4car.rounded:after{
+	border-radius:0 0 0 20px;
+}
+.cont4car .body4car:after{
+	right:20px;
+	left:20px;
+}
+.cont4car .body4car:after,
+.cont4car .head4car:after{
+	border-right:0;
+	border-bottom:0;
+	border-left:0;
+}
+.cont4car .head4car:after{
+	content:"";
+	display:inline-block;
+	width:100%;
+	margin:.6em 0 0 10px;
+	vertical-align:top;
 }

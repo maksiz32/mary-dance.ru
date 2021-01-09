@@ -11,15 +11,17 @@
     <?php $i=0; ?>
 @foreach ($content as $cont)
     <div class="carousel-item <?php if ($i==0) { echo 'active'; }?>">
-      <img class="d-block w-100" src="{{ $cont->photo }}">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>{{ $cont->title }}</h5>
-                <p>
                     <a href="#{{ $cont->id }}" class="text-white">
+      <img class="d-block w-100 h-70" src="{{ $cont->photo }}">
+            <div class="carousel-caption d-none d-md-block">
+                <dl class="cont4car rounded">
+                    <dt class="head4car">{{ $cont->title }}</dt>
+                    <dd class="body4car">
                 <?php echo (html_entity_decode(mb_strimwidth($cont->pageContent,0,200,"...",mb_internal_encoding()))); ?>
-                    </a>
-                </p>
+                    </dd>
+                </dl>
             </div>
+                    </a>
     </div>
     <?php $i++; ?>
 @endforeach    

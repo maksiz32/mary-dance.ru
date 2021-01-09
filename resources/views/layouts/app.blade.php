@@ -4,6 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Maksim Manzulin">
+    <meta name="keywords" content='собаки на продажу, питомник собак, 
+          китайская хохлатая, купить собаку, порода, породы, породистая собака'>
+    <meta name="description" content='Питомник собак породы китайская хохлатая. 
+          В Брянске. В Москве. Наши питомники предлагают только качественных, породистых собачек'>
 
     <!-- Styles -->
     <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet">
@@ -56,13 +61,30 @@
     <footer class="footer">
       <div class="container-fluid">
           <div class="row">
-              <div class="col-4">
-                  <span class="text-muted">Содержимое футера, в который мы добавим адреса и информацию о владельце.</span>
+              <div class="col-lg-4">
+                  <span class="text-muted">
+                      <strong>Наши адреса:</strong>
+                  </span>
+                      <p>
+                  <span class="text-muted">
+                      МО, г. Апрелевка, ул. Жасминовая, д.4
+                      <br /><br />
+                      г. Брянск, ул. Грибоедова, д. 27
+                  </span>
+                      </p>
+                      <span class="text-muted">
+                      <b>E-mail:</b> <a href="mailto:Maria-NastasinaGAVyandexDDOTru" onclick="this.href=this.href.replace(/GAV/,'@').replace(/DDOT/,'.')">Написать нам на email</a>
+                      </span>
               </div>
-              <div class="col-4">
-                  <span class="text-muted">Содержимое футера, в который мы добавим различные ссылки на разделы сайта.</span>
+              <div class="col-lg-4">
+                  <span class="text-muted"><strong>Полезные ссылки:</strong>
+                      <br />
+                      <a href="http://www.rkf.org.ru">
+                      Российская Кинологическая Федерация
+                      </a>
+                  </span>
               </div>
-              <div class="col-4">
+              <div class="col-lg-4 align-items-center text-center">
                   <?php
                   $start_Year = "2018";
                   $this_Year = date('Y');
@@ -72,8 +94,11 @@
                       $years = "{$start_Year} - {$this_Year}";
                       }
                   ?>
-                  <span class="text-muted">Содержимое футера, в который мы добавим информацию об авторских правах.
-                      <br />&copy; &nbsp;&nbsp;&nbsp;<?=$years?>
+                  <span class="text-muted">
+                      <img src="{{asset('logo/logo3.png')}}" alt="Зарегистрированный ТЗ" class="logofoot">
+                      <small>
+                      <br />Свидетельство №20306<br />Российской Кинологической Федерации
+                      <br />&copy; &nbsp;&nbsp;&nbsp;<?=$years?></small>
                   </span>
               </div>
           </div>

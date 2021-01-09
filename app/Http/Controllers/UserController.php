@@ -24,6 +24,7 @@ class UserController extends Controller {
 
   public function save(UserRequest $request) {
     $user = User::findOrFail($request->id);
+    $request->password = bcrypt($request->password);
     $user->fill($request->all())->save();
     return redirect()->action("UserController@index")
     ->with("status", "Пользователь " . $user->name . " исправлен");
