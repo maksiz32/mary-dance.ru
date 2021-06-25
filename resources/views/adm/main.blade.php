@@ -32,7 +32,7 @@
             <h5 class="mh-2 text-center">Наши собаки</h5>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
-                        <a href="/dogs">
+                        <a href="/alldogs">
                         Редактирование раздела Наши собаки
                         </a></li>
                 </ul>

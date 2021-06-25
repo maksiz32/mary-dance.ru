@@ -3,12 +3,12 @@
   array (
     'name' => 'Mary-Dance',
     'env' => 'local',
-    'debug' => false,
+    'debug' => true,
     'url' => 'http://mary-dance.ru',
     'timezone' => 'UTC',
-    'locale' => 'en',
+    'locale' => 'ru_RU',
     'fallback_locale' => 'en',
-    'key' => 'base64:08xfyNK0X+9Wd4uXqmoaLZOaK/pW9OFCzQVqkzTd3DY=',
+    'key' => 'base64:lW++Wupsnx/342X2fA6gPPREkYZJ3Uqyuk6YQbtVAmg=',
     'cipher' => 'AES-256-CBC',
     'log' => 'single',
     'log_level' => 'debug',
@@ -43,6 +43,7 @@
       26 => 'App\\Providers\\RouteServiceProvider',
       27 => 'Mews\\Captcha\\CaptchaServiceProvider',
       28 => 'Barryvdh\\Debugbar\\ServiceProvider',
+      29 => 'Intervention\\Image\\ImageServiceProvider',
     ),
     'aliases' => 
     array (
@@ -81,6 +82,7 @@
       'Validator' => 'Illuminate\\Support\\Facades\\Validator',
       'View' => 'Illuminate\\Support\\Facades\\View',
       'Debugbar' => 'Barryvdh\\Debugbar\\Facade',
+      'Image' => 'Intervention\\Image\\Facades\\Image',
     ),
   ),
   'auth' => 
@@ -173,7 +175,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'C:\\OSPanel\\domains\\mary-dance.lc\\storage\\framework/cache/data',
+        'path' => 'C:\\OpenServer\\domains\\mary-dance.lc\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -271,7 +273,7 @@
       'mysql' => 
       array (
         'driver' => 'mysql',
-        'host' => '127.0.0.1',
+        'host' => 'localhost',
         'port' => '3306',
         'database' => 'marydance',
         'username' => 'mary-wrt',
@@ -286,7 +288,7 @@
       'pgsql' => 
       array (
         'driver' => 'pgsql',
-        'host' => '127.0.0.1',
+        'host' => 'localhost',
         'port' => '3306',
         'database' => 'marydance',
         'username' => 'mary-wrt',
@@ -299,7 +301,7 @@
       'sqlsrv' => 
       array (
         'driver' => 'sqlsrv',
-        'host' => '127.0.0.1',
+        'host' => 'localhost',
         'port' => '3306',
         'database' => 'marydance',
         'username' => 'mary-wrt',
@@ -314,7 +316,7 @@
       'client' => 'predis',
       'default' => 
       array (
-        'host' => '127.0.0.1',
+        'host' => 'localhost',
         'password' => NULL,
         'port' => '6379',
         'database' => 0,
@@ -326,13 +328,13 @@
     'enabled' => NULL,
     'storage' => 
     array (
-      'enabled' => true,
+      'enabled' => false,
       'driver' => 'file',
-      'path' => 'C:\\OSPanel\\domains\\mary-dance.lc\\storage\\debugbar',
+      'path' => 'C:\\OpenServer\\domains\\mary-dance.lc\\storage\\debugbar',
       'connection' => NULL,
       'provider' => '',
     ),
-    'include_vendors' => true,
+    'include_vendors' => false,
     'capture_ajax' => true,
     'add_ajax_timing' => false,
     'error_handler' => false,
@@ -398,7 +400,7 @@
         'file' => NULL,
       ),
     ),
-    'inject' => true,
+    'inject' => false,
     'route_prefix' => '_debugbar',
     'route_domain' => NULL,
   ),
@@ -411,19 +413,19 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\OSPanel\\domains\\mary-dance.lc\\storage\\app',
+        'root' => 'C:\\OpenServer\\domains\\mary-dance.lc\\storage\\app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\OSPanel\\domains\\mary-dance.lc\\storage\\app/public',
+        'root' => 'C:\\OpenServer\\domains\\mary-dance.lc\\storage\\app/public',
         'url' => 'http://mary-dance.ru/storage',
         'visibility' => 'public',
       ),
       'my_files' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\OSPanel\\domains\\mary-dance.lc\\public',
+        'root' => 'C:\\OpenServer\\domains\\mary-dance.lc\\public',
       ),
       's3' => 
       array (
@@ -454,7 +456,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'C:\\OSPanel\\domains\\mary-dance.lc\\resources\\views/vendor/mail',
+        0 => 'C:\\OpenServer\\domains\\mary-dance.lc\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -534,7 +536,7 @@
     'lifetime' => 120,
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'C:\\OSPanel\\domains\\mary-dance.lc\\storage\\framework/sessions',
+    'files' => 'C:\\OpenServer\\domains\\mary-dance.lc\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -562,8 +564,12 @@
   array (
     'paths' => 
     array (
-      0 => 'C:\\OSPanel\\domains\\mary-dance.lc\\resources\\views',
+      0 => 'C:\\OpenServer\\domains\\mary-dance.lc\\resources\\views',
     ),
-    'compiled' => 'C:\\OSPanel\\domains\\mary-dance.lc\\storage\\framework\\views',
+    'compiled' => 'C:\\OpenServer\\domains\\mary-dance.lc\\storage\\framework\\views',
+  ),
+  'image' => 
+  array (
+    'driver' => 'gd',
   ),
 );

@@ -30,6 +30,7 @@
     26 => 'App\\Providers\\RouteServiceProvider',
     27 => 'Mews\\Captcha\\CaptchaServiceProvider',
     28 => 'Barryvdh\\Debugbar\\ServiceProvider',
+    29 => 'Intervention\\Image\\ImageServiceProvider',
   ),
   'eager' => 
   array (
@@ -49,6 +50,7 @@
     13 => 'App\\Providers\\RouteServiceProvider',
     14 => 'Mews\\Captcha\\CaptchaServiceProvider',
     15 => 'Barryvdh\\Debugbar\\ServiceProvider',
+    16 => 'Intervention\\Image\\ImageServiceProvider',
   ),
   'deferred' => 
   array (

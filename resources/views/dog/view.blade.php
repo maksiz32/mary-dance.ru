@@ -61,7 +61,7 @@ function format_interval(DateInterval $interval) {
                     @foreach ($photo as $photoDog)
                         <div class="col-md-3 col-md-offset-2">
                             <a href="/dog/{{$dog->id_dogs}}/{{$photoDog->id}}">
-                            <img class="img-thumbnail" src="{{ $photoDog->photo }}" alt="{{ $photoDog->photo }}">
+                            <img class="img-thumbnail" src="{{asset($photoDog->photo)}}" alt="{{ $photoDog->photo }}">
                             </a>
                         </div>
                     @endforeach
@@ -73,11 +73,11 @@ function format_interval(DateInterval $interval) {
             <div class="col-12 justify-content-md-center justify-content-md-center">                
                 @if (@isset($firstPhoto))
                 @foreach($firstPhoto as $firstPhoto1)
-                <img class="img-fluid" src="{{ $firstPhoto1->photo }}" alt="{{ $firstPhoto1->photo }}">
+                <img class="img-fluid" src="{{ asset($firstPhoto1->photo) }}" alt="{{ $firstPhoto1->photo }}">
                 @endforeach
                 @elseif (($photo->count()) >= 1)
                 <?php $valPhoto = $photo[0]->photo; ?>
-                <img class="img-fluid" src="{{ $valPhoto }}">
+                <img class="img-fluid" src="{{ asset($valPhoto) }}">
                 @endif
             </div>
         </div>

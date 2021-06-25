@@ -109,7 +109,7 @@ type="text/javascript" charset="utf-8" ></script>
 
         </div>
         <div class="switch alert">
-            <input class="switch-input" id="pr1" type="checkbox" name="modelSwitch[]" onchange='addName("pr1", "hidepr1");' value="Будем менять картинку слайда?">
+            <input class="switch-input" id="pr1" type="checkbox" name="modelSwitch" onchange='addName("pr1", "hidepr1");' value="Будем менять картинку слайда?">
             
             <label class="switch-paddle" for="pr1">
                 @if ($content->id)
@@ -131,7 +131,7 @@ type="text/javascript" charset="utf-8" ></script>
         @if ($content->photo)
         <div class="col-sm-3">
             <p>
-            <img class="img-thumbnail" src="<?php public_path();?>/{{ $content->photo }}">
+            <img class="img-thumbnail" src="{{ asset($content->photo) }}">
             </p>
         </div>
         @endif
