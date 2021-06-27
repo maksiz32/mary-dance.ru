@@ -8,8 +8,11 @@ use Illuminate\Support\Facades\Storage;
 
 class MainController extends Controller
 {
-    public function __construct()
+    protected $model;
+
+    public function __construct(Content $model)
     {
+        $this->model = $model;
         $this->middleware("auth")->only(["all", "main", "input", "save", "destroy"]);
     }
     
@@ -26,7 +29,7 @@ class MainController extends Controller
     }
     
     public function save(ContentRequest $request) {
-        $str = Content::contentCreateOrAdd($request->all(), $request->photo);
+        $str = $this->model->contentCreateOrAdd($request->all(), $request->photo);
         return redirect()->action("MainController@all")->with("status", "Раздел " . $request->title . $str);
     }
     

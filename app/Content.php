@@ -41,7 +41,7 @@ class Content extends Model
         ]);
     }
 
-    public static function contentCreateOrAdd($request, $file = null) {
+    public function contentCreateOrAdd($request, $file = null) {
         if ($file) {
             $file = FileService::newFileAdd($file, 'img/main');
             if (isset($request['id'])) {
